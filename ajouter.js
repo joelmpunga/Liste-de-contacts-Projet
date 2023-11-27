@@ -169,3 +169,12 @@ function viewsContact(table){
 // alert(rep);
 
 viewsContact(table)
+
+function reinitialiser(){
+    prenom.value="";
+    nom.value=""
+    telephone.value=""
+    groupe.value=""
+    telephone.value=""
+    email.value="";
+}
