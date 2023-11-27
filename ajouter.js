@@ -18,11 +18,6 @@ let container = document.querySelector('.container-fields-form')
 inputImage.dragglable=true;
 let erreurImage = false;
 
-inputImage.addEventListener('dragstart',function(e){
-    dragged= event.target;
-    e.stopPropagation();
-    e.preventDefault();
-})
 
 inputImage.addEventListener('dragover',function(e){
     e.stopPropagation();
@@ -79,7 +74,7 @@ function afficherImage(div,name){
     image.src = name;
     //image.classList=style;
     image.setAttribute('style','width:50%;height:100%;margin:auto;');
-    image.alt="La photo ici";
+    image.alt="La photo deposée est ici";
     div.appendChild(image);
     console.log("image affiché");
     console.log(style);
