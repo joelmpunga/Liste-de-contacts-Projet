@@ -27,9 +27,11 @@
             <div class="container-fields-button-form">
                 <div class="container-fields-form">
                     <div class="container-field">
-                        <label for="" class="label-field">Prenom
-                            <input type="text" class="input-form">
-                        </label>
+                        <form action="" method="post" id="loginform">
+
+                            <label for="" class="label-field">Prenom
+                                <input type="text" class="input-form">
+                            </label>
                     </div>
                     <div class="container-field">
                         <label for="" class="label-field">Nom
@@ -43,18 +45,20 @@
                     </div>
                     <div class="container-field">
                         <label for="" class="label-field">Groupe
-                            <input type="text" class="input-form">
+                            <input type="text" id="groupe" class="input-form">
                         </label>
+
                     </div>
                     <div class="container-field">
-                        <label for="" class="label-field">Email
-                            <input type="text" class="input-form">
+                        <label for="" class="label-field" id="cont-email">Email
+                            <input type="email" id="email" class="input-form" name="email" required>
                         </label>
                     </div>
                     <div class="container-field-textarea">
                         <label for="" class="label-field-textarea">Bio
-                            <textarea name="" cols="30" rows="10" class="input-form-textarea"></textarea>
+                            <textarea name="" cols="30" rows="10" id="bio" class="input-form-textarea"></textarea>
                         </label>
+                        </form>
                     </div>
                     <div class="container-image-form">
                         <div class="form-input-image">
@@ -80,7 +84,7 @@
                     <div class="container-entete">
                         <h4 class="identite-oneContact">Prénom - Nom - Groupe</h4>
                         <div class="container-icones-oneContact">
-                            <i class="fa fa-user icone-modification"></i>
+                            <i class="fa fa-user-pen icone-modification"></i>
                             <i class="fa fa-trash-o icone-suppression"></i>
                         </div>
                     </div>
@@ -101,7 +105,7 @@
                     <div class="container-entete">
                         <h4 class="identite-oneContact">Prénom - Nom - Groupe</h4>
                         <div class="container-icones-oneContact">
-                            <i class="fa fa-user icone-modification"></i>
+                            <i class="fa fa-user-pen icone-modification"></i>
                             <i class="fa fa-trash-o icone-suppression"></i>
                         </div>
                     </div>
@@ -122,7 +126,7 @@
                     <div class="container-entete">
                         <h4 class="identite-oneContact">Prénom - Nom - Groupe</h4>
                         <div class="container-icones-oneContact">
-                            <i class="fa fa-user icone-modification"></i>
+                            <i class="fa fa-user-pen icone-modification"></i>
                             <i class="fa fa-trash-o icone-suppression"></i>
                         </div>
                     </div>
@@ -139,6 +143,9 @@
             </div>
         </div>
     </div>
+    <script src="script.js">
+
+    </script>
 </body>
 
 </html>
