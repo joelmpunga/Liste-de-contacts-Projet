@@ -1,4 +1,4 @@
-.container-form-contact{
+.container-form-contact {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -10,7 +10,7 @@
     top: 15%;
 }
 
-.container-form{
+.container-form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -20,7 +20,7 @@
     border: 1px solid #C4C4C4;
 }
 
-.container-contact{
+.container-contact {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -31,7 +31,7 @@
     border: 1px solid #C4C4C4;
 }
 
-.container-title-form{
+.container-title-form {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -41,7 +41,7 @@
     background: #0880D6;
 }
 
-.title-form{
+.title-form {
     width: 60%;
     height: 3.5rem;
     font-family: 'Poppins';
@@ -52,30 +52,31 @@
     text-align: center;
     color: #FFFFFF;
 }
-.container-fields-button-form{
+
+.container-fields-button-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     padding: 2.5rem 2.5rem;
     gap: 26px;
-    width: 60%;
+    width: 82%;
     height: 100%;
     background: #FFFFFF;
 }
 
-.container-fields-form{
+.container-fields-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0px;
-    gap: 20px;
-    width: 33rem;
+    gap: 1rem;
+    width: 100%;
     height: 50rem;
 }
 
-.container-button-form{
+.container-button-form {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -85,46 +86,43 @@
     height: 5rem;
 }
 
-.container-field{
+.container-field {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
-    gap: 11px;
-    width: 32.5rem;
+    gap: 10px;
+    width: 96%;
     height: 5rem;
 }
 
-.container-field-textarea{
+.container-field-textarea {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
-    gap: 11px;
-    width: 32.5rem;
-    height: 9.5rem;
+    gap: 10px;
+    width: 100%;
+    height: 5rem;
 }
 
-.label-field{
+.label-field {
     width: 100%;
-    height: 3rem;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 3rem;
-    text-align:left;
+    text-align: left;
     color: #0880D6;
 }
 
-.input-form{
+.input-form {
     width: 100%;
-    height: 45px;
+    height: 35px;
     background: #FFFFFF;
     border: 1px solid #C4C4C4;
 }
 
-.label-field-textarea{
+.label-field-textarea {
     width: 100%;
     height: 24px;
     font-family: 'Poppins';
@@ -132,33 +130,33 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    text-align:left;
+    text-align: left;
     color: #0880D6;
     margin: 0.6rem 0px;
 }
 
-.input-form-textarea{
-    width: 32.5rem;
+.input-form-textarea {
+    width: 96%;
     height: 7rem;
     background: #FFFFFF;
     border: 1px solid #C4C4C4;
 }
 
 
-.container-image-form{
+.container-image-form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     padding: 45px 0px;
     gap: 218px;
-    width: 32.7rem;
+    width: 100%;
     height: 8rem;
     border: 1px dashed #C4C4C4;
-    margin: 5px 15rem;
+    margin: 8rem 15rem;
 }
 
-.form-input-image{
+.form-input-image {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -169,7 +167,7 @@
     height: 6rem;
 }
 
-.image-message{
+.image-message {
     width: 9rem;
     height: 48px;
     font-family: 'Poppins';
@@ -181,7 +179,7 @@
     color: #555555;
 }
 
-.container-button-creer{
+.container-button-creer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -194,7 +192,7 @@
 
 }
 
-.container-button-reinit{
+.container-button-reinit {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -206,7 +204,7 @@
     border-style: none;
 }
 
-.button-creer{
+.button-creer {
     width: 45px;
     height: 24px;
     font-family: 'Poppins';
@@ -219,7 +217,7 @@
 
 }
 
-.button-reinit{
+.button-reinit {
     width: 41px;
     height: 24px;
     font-family: 'Poppins';
@@ -231,12 +229,12 @@
     color: #FFFFFF;
 }
 
-.container-cont{
+.container-cont {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    width: 55rem;
+    width: 100%;
     height: 41.3rem;
     background: #FFFFFF;
     border-width: 1px 1px 0px 1px;
@@ -244,19 +242,18 @@
     border-color: #DDDDDD;
 }
 
-.container-title-contact{
+.container-title-contact {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 12px 115px 12px 0px;
-    width: 48rem;
+    width: 100%;
     height: 54px;
     background: #0880D6;
 }
 
-.title-contact{
-    width: 48rem;
-    height: 30px;
+.title-contact {
+    width: 100%;
+    height: 3.5rem;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
@@ -266,7 +263,7 @@
     color: #FFFFFF;
 }
 
-.container-oneContact{
+.container-oneContact {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -284,17 +281,17 @@
     height: 100%;
 }
 
-.container-detail-contact{
+.container-detail-contact {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
     gap: 14px;
-    width: 48rem;
+    width: 100%;
     height: 127px;
 }
 
-.container-entete{
+.container-entete {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -305,7 +302,7 @@
 }
 
 
-.identite-oneContact{
+.identite-oneContact {
     width: 183px;
     height: 24px;
     font-family: 'Poppins';
@@ -316,7 +313,7 @@
     color: #555555;
 }
 
-.container-icones-oneContact{
+.container-icones-oneContact {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -327,19 +324,19 @@
 
 }
 
-.icone-modification{
+.icone-modification {
     width: 16.86px;
     height: 14px;
-    background: #555555;
+    color: #555555;
 }
 
-.icone-suppression{
+.icone-suppression {
     width: 11.05px;
     height: 14px;
-    background: #FF3838;
+    color: #FF3838;
 }
 
-.numero-oneContact{
+.numero-oneContact {
     width: 74px;
     height: 21px;
     font-family: 'Poppins';
@@ -350,7 +347,7 @@
     color: #555555;
 }
 
-.bio-oneContact{
+.bio-oneContact {
     width: 511px;
     height: 54px;
     font-family: 'Poppins';
@@ -361,7 +358,7 @@
     color: #555555;
 }
 
-.main-container{
+.main-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -374,13 +371,13 @@
     background: #0880D6;
 }
 
-.main-container-title{
-    width: 245px;
+.main-container-title {
+    width: 100%;
     height: 30px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 30px;    
-    color: #FFFFFF;    
+    line-height: 30px;
+    color: #FFFFFF;
 }
