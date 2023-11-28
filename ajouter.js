@@ -42,7 +42,6 @@ inputImage.addEventListener('drop',function(e){
     const fileList = e.dataTransfer.files;
     let longeur = fileList.length;
     let file = fileList[longeur-1];
-    const name = file.name;
     const size = file.size;
     const ext = file.type;
     divEnfant.style.display="block";
@@ -79,8 +78,8 @@ inputImage.addEventListener('drop',function(e){
             container.lastChild.remove;
             inputImage.lastChild.remove();
         }
-        afficherImage(inputImage,file);
-        imageEnCours=name;
+        let nameImg =afficherImage(inputImage,file);
+        imageEnCours=nameImg;
         erreurImage = false;
     }
 })
