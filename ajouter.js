@@ -47,6 +47,7 @@ inputImage.addEventListener('drop',function(e){
     const ext = file.type;
     divEnfant.style.display="block";
     let span = document.createElement('span');
+
     if(erreurImage){
         container.lastChild.remove();
     }
@@ -78,18 +79,34 @@ inputImage.addEventListener('drop',function(e){
             container.lastChild.remove;
             inputImage.lastChild.remove();
         }
-        afficherImage(inputImage,name);
+        afficherImage(inputImage,file);
         imageEnCours=name;
         erreurImage = false;
     }
 })
 
-function afficherImage(div,name){
+function afficherImage(div,file){
     let image = document.createElement('img');
-    image.src = name;
+    let nameImage ="";
     image.setAttribute('style','width:50%;height:100%;margin:auto;');
     image.alt="La photo deposée est ici";
+    image.classList.add("obj");
     div.appendChild(image);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      image.src = e.target.result;
+      nameImage = image.src;
+    };
+    reader.readAsDataURL(file);
+    return nameImage;
+}
+
+function afficherImageContact(div,name){
+    let image = document.createElement('img');
+    image.setAttribute('style','width:180px;height:180px;margin:auto;border-radius:50%');
+    image.alt="La photo deposée est ici";
+    div.appendChild(image);
+    image.src = name;
 }
 
 
@@ -100,6 +117,20 @@ function isEmailExits(email,contacts){
     else{
         for(const contact of contacts){
             if(contact.email==email){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function isTelephoneExits(telephone,contacts){
+    if(contacts.length==0){
+        return false;
+    }
+    else{
+        for(const contact of contacts){
+            if(contact.telephone==telephone){
                 return true;
             }
         }
@@ -150,7 +181,7 @@ function viewsContact(table){
     let contenaire_principale = document.querySelector('.container-cont');
     contenaire_principale.appendChild(container_oneContact);
     container_oneContact.appendChild(container_image_contact);
-    afficherImage(container_image_contact,dernierContact.image)
+    afficherImageContact(container_image_contact,dernierContact.image)
     container_oneContact.appendChild(container_detail_contact);
     container_detail_contact.appendChild(container_entete);
     container_entete.appendChild(identite_oneContact);
@@ -165,16 +196,17 @@ function viewsContact(table){
     bio_oneContact.innerHTML=dernierContact.bio;
 }
 
-// let rep=isEmailExits("joel@gmail.com",table);
-// alert(rep);
+//let rep=isEmailExits("joel@gmail.com",table);
+//alert(rep);
 
 viewsContact(table)
 
 function reinitialiser(){
     prenom.value="";
-    nom.value=""
-    telephone.value=""
-    groupe.value=""
-    telephone.value=""
+    nom.value="";
+    telephone.value="";
+    groupe.value="";
+    telephone.value="";
     email.value="";
+    image.innerHTML="";
 }
