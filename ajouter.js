@@ -6,7 +6,7 @@ let table = [
         groupe:"L1",
         email: "joel@gmail.com",
         bio:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste aperiam repudiandae voluptatem officia voluptate excepturi eligendi mollitia et. Adipisci qui tenetur ipsam perferendis laborum, tempora assumenda totam quidem consectetur optio reiciendis sint expedita aspernatur, officia commodi enim veniam temporibus ab, fuga alias? Aspernatur eius nesciunt aliquid earum odio dolorem nobis. ",
-        image:"user-austin-ortiz-270x270.jpg",
+        image:"joel.jpg",
     },
 ];
 let imageEnCours="";
@@ -28,6 +28,25 @@ let container = document.querySelector('.container-fields-form')
 inputImage.dragglable=true;
 let erreurImage = false;
 
+let divEmail = document.querySelector('#cont-email');
+let email = document.getElementById("email");
+email.addEventListener('blur', function () {
+    let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
+    let erreur = document.createElement('span');
+    let valueEmail = email.value;
+    erreur.setAttribute("style", "color:#f00;margin-bottom:300px;")
+    if (!regexEmail.test(valueEmail)) {
+        erreur.innerText = "votre adresse Mail n'est pas valide";
+        divEmail.appendChild(erreur);
+        // email.setAttribute("style","border:2px red solid;");
+        email.style.border = "2px solid red";
+
+    }
+    email.addEventListener('focus', function () {
+        email.style.border = "";
+        erreur.innerText = "";
+    })
+})
 
 inputImage.addEventListener('dragover',function(e){
     e.stopPropagation();
@@ -52,7 +71,7 @@ inputImage.addEventListener('drop',function(e){
     }
     if(ext!="image/png" && ext!="image/jpg" && ext!="image/jpeg"){
         inputImage.setAttribute('style','border-color:red;');
-        //cette ligne ne doit s'executer si l'erreur est la
+        //cette ligne ne doit s'executer si l'erreur existe
         if(!erreurImage){
             inputImage.lastChild.remove();
         }
@@ -70,7 +89,7 @@ inputImage.addEventListener('drop',function(e){
         span.innerHTML= "La taille de l'image doit etre inferieur à 5MB";
         span.style.color = "red";
         erreurImage=true;
-        container.appendChild(span);
+        inputImage.appendChild(span);
     }
     else{
         divEnfant.style.display="none";
@@ -160,7 +179,7 @@ function viewsContact(table){
     })
 
     let faModif = document.createElement('i');
-    faModif.classList="fa fa-user"
+    faModif.classList="fa fa-user-pen icone-modification"
 
     let aSuppr = document.createElement('a');
     aSuppr.href=""
@@ -169,7 +188,7 @@ function viewsContact(table){
     })
 
     let faSuppr = document.createElement('i');
-    faSuppr.classList="fa fa-trash-o"
+    faSuppr.classList="fa fa-trash-o icone-suppression"
 
     let numero_oneContact = document.createElement('div');
     numero_oneContact.classList="numero-oneContact"
