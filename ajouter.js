@@ -1,26 +1,17 @@
-let table = [
-    {
-        inputPrenom: "Joel",
-        inputNom: "MPUNGA",
-        inputTelephone: "0842672114",
-        inputGroupe:"L1",
-        inputEmail: "joel@gmail.com",
-        textareaBio:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste aperiam repudiandae voluptatem officia voluptate excepturi eligendi mollitia et. Adipisci qui tenetur ipsam perferendis laborum, tempora assumenda totam quidem consectetur optio reiciendis sint expedita aspernatur, officia commodi enim veniam temporibus ab, fuga alias? Aspernatur eius nesciunt aliquid earum odio dolorem nobis. ",
-        image:"joel.jpg",
-    },
-];
+let table = [];
 let imageEnCours="";
 function addContact(table){
     const contact = {
-        inputPrenom: inputPrenom,
-        inputNom: inputNom,
-        inputTelephone: inputTelephone,
-        inputGroupe:inputGroupe,
-        inputEmail: inputEmail,
-        textareaBio:textareaBio,
-        image:image,
+        prenom: inputPrenom.value,
+        nom: inputNom.value,
+        telephone: inputTelephone.value,
+        groupe:inputGroupe.value,
+        email: inputEmail.value,
+        bio:textareaBio.value,
+        image:'joel.jpg',
     }
     table.push(contact);
+    //console.log(contact.telephone);
 }
 let inputImage = document.querySelector('.container-image-form');
 let divEnfant = document.querySelector('.form-input-image');
@@ -34,6 +25,7 @@ let inputTelephone = document.querySelector('#inputTelephone');
 let inputGroupe = document.querySelector('#inputGroupe');
 let inputEmail = document.querySelector('#inputEmail');
 let textareaBio = document.querySelector('#textareaBio');
+let btnCreer = document.querySelector('.container-button-creer')
 
 
 let divinputEmail = document.querySelector('#cont-inputEmail');
@@ -148,13 +140,13 @@ function isinputEmailExits(inputEmail,contacts){
     return false;
 }
 
-function isinputTelephoneExits(inputTelephone,contacts){
+function isTelephoneExits(telephone,contacts){
     if(contacts.length==0){
         return false;
     }
     else{
         for(const contact of contacts){
-            if(contact.inputTelephone==inputTelephone){
+            if(contact.telephone==telephone){
                 return true;
             }
         }
@@ -175,13 +167,20 @@ function viewsContact(table){
     container_entete.classList = "container-entete";
     let identite_oneContact = document.createElement('h4');
     identite_oneContact.classList = "identite-oneContact";
-    identite_oneContact.innerHTML = dernierContact.inputPrenom + " - " +dernierContact.inputNom+ " - " +dernierContact.inputGroupe
+    identite_oneContact.innerHTML = dernierContact.prenom + " - " +dernierContact.nom+ " - " +dernierContact.groupe
     let container_icones_oneContact = document.createElement('div');
     container_icones_oneContact.classList="container-icones-oneContact"
     let aModif = document.createElement('a');
-    aModif.href=""
-    aModif.addEventListener('click',function(){
-        //afficherAvantModif(longueur-1)
+    aModif.href="#"
+    aModif.addEventListener('click',function(e){
+        e.preventDefault();
+        //afficherAvantModif(table,longueur-1)
+        let data = modifierTableau(table,longueur-1)
+        identite_oneContact.innerHTML = data.prenom + " - " +data.nom+ " - " +data.groupe
+        numero_oneContact.innerHTML=data.telephone;
+        container_image_contact.innerHTML=""
+        afficherImageContact(container_image_contact,data.image)
+        textareaBio_oneContact.innerHTML=data.bio;
     })
 
     let faModif = document.createElement('i');
@@ -215,15 +214,18 @@ function viewsContact(table){
     container_icones_oneContact.appendChild(aSuppr)
     aSuppr.appendChild(faSuppr)
     container_detail_contact.appendChild(numero_oneContact);
-    numero_oneContact.innerHTML=dernierContact.inputTelephone;
+    numero_oneContact.innerHTML=dernierContact.telephone;
     container_detail_contact.appendChild(textareaBio_oneContact);
-    textareaBio_oneContact.innerHTML=dernierContact.textareaBio;
+    textareaBio_oneContact.innerHTML=dernierContact.bio;
 }
 
 //let rep=isinputEmailExits("joel@gmail.com",table);
 //alert(rep);
+btnCreer.addEventListener('click',function(){
+    addContact(table);
+    viewsContact(table)
+})
 
-viewsContact(table)
 
 function reinitialiser(){
     inputPrenom.value="";
@@ -233,4 +235,16 @@ function reinitialiser(){
     inputTelephone.value="";
     inputEmail.value="";
     image.innerHTML="";
+}
+
+
+function modifierTableau(table,index){
+    table[index].prenom=inputPrenom.value;
+    table[index].nom=inputNom.value;
+    table[index].telephone=inputTelephone.value;
+    table[index].groupe=inputGroupe.value;
+    table[index].email=inputEmail.value;
+    table[index].bio=textareaBio.value;
+    table[index].image=imageEnCours;
+    return table[index];
 }
