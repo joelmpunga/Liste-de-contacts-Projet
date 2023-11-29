@@ -28,8 +28,15 @@ let container = document.querySelector('.container-fields-form')
 inputImage.dragglable=true;
 let erreurImage = false;
 
+let prenom = document.querySelector('#prenom');
+let nom = document.querySelector('#nom');
+let telephone = document.querySelector('#telephone');
+let groupe = document.querySelector('#groupe');
+let email = document.querySelector('#email');
+let bio = document.querySelector('#bio');
+
+
 let divEmail = document.querySelector('#cont-email');
-let email = document.getElementById("email");
 email.addEventListener('blur', function () {
     let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
     let erreur = document.createElement('span');
@@ -108,7 +115,6 @@ function afficherImage(div,file){
     let nameImage ="";
     image.setAttribute('style','width:50%;height:100%;margin:auto;');
     image.alt="La photo deposée est ici";
-    image.classList.add("obj");
     div.appendChild(image);
     const reader = new FileReader();
     reader.onload = (e) => {
