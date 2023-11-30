@@ -277,8 +277,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    gap: 52px;
-    width: 48rem;
+    width: 90%;
     height: 13rem;
     border-bottom: 1px solid #C4C4C4;
 }
@@ -286,7 +285,6 @@
 .container-image-contact{
     width: 10em;
     height: 10em;
-    background-image: url(joel.jpg);
     border-radius: 60%;
 }
 
@@ -336,13 +334,13 @@
 .icone-modification{
     width: 16.86px;
     height: 14px;
-    background: #555555;
+    color: #555555;
 }
 
 .icone-suppression{
     width: 11.05px;
     height: 14px;
-    background: #FF3838;
+    color: #FF3838;
 }
 
 .numero-oneContact{
