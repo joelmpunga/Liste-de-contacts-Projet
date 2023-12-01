@@ -1,17 +1,35 @@
 let table = [];
-let imageEnCours="";
+let imageEnCours;
 function addContact(table){
-    const contact = {
-        prenom: inputPrenom.value,
-        nom: inputNom.value,
-        telephone: inputTelephone.value,
-        groupe:inputGroupe.value,
-        email: inputEmail.value,
-        bio:textareaBio.value,
-        image:'joel.jpg',
-    }
-    table.push(contact);
-    //console.log(contact.telephone);
+    let nomImage;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        nomImage = e.target.result;
+        console.log("in ...",nomImage);
+      };
+      reader.readAsDataURL(imageEnCours);
+      if(reader.EMPTY){
+        alert("Aucun fichier n'est chargé")
+      }
+      if(reader.LOADING){
+        alert("Chargement")
+      }
+      if(reader.DONE){
+        alert("Chargé")
+        console.log("out ...",nomImage);
+        const contact = {
+            prenom: inputPrenom.value,
+            nom: inputNom.value,
+            telephone: inputTelephone.value,
+            groupe:inputGroupe.value,
+            email: inputEmail.value,
+            bio:textareaBio.value,
+            image:nomImage,
+        }
+        table.push(contact);
+        console.log("out ...",contact.image);
+
+      }
 }
 let inputImage = document.querySelector('.container-image-form');
 let divEnfant = document.querySelector('.form-input-image');
@@ -81,14 +99,14 @@ inputImage.addEventListener('drop',function(e){
     }
     else if(size>5000000){
         inputImage.setAttribute('style','border-color:red;');
-        //cette ligne ne doit s'executer si l'erreur est la
+        //cette ligne ne doit s'executer si l'erreur existe
         if(!erreurImage){
             inputImage.lastChild.remove();
         }
-        span.innerHTML= "La taille de l'image doit etre inferieur à 5MB";
+        span.innerHTML= "La taille autorisé est d'au plus 5Mo";
         span.style.color = "red";
         erreurImage=true;
-        inputImage.appendChild(span);
+        container.appendChild(span);
     }
     else{
         divEnfant.style.display="none";
@@ -96,25 +114,22 @@ inputImage.addEventListener('drop',function(e){
             container.lastChild.remove;
             inputImage.lastChild.remove();
         }
-        let nameImg =afficherImage(inputImage,file);
-        imageEnCours=nameImg;
+        afficherImage(inputImage,file);
         erreurImage = false;
     }
 })
 
 function afficherImage(div,file){
     let image = document.createElement('img');
-    let nameImage ="";
     image.setAttribute('style','width:50%;height:100%;margin:auto;');
     image.alt="La photo deposée est ici";
     div.appendChild(image);
     const reader = new FileReader();
     reader.onload = (e) => {
-      image.src = e.target.result;
-      nameImage = image.src;
-    };
-    reader.readAsDataURL(file);
-    return nameImage;
+        image.src = e.target.result;
+      };
+      imageEnCours = file;
+      reader.readAsDataURL(file);
 }
 
 function afficherImageContact(div,name){
@@ -123,6 +138,15 @@ function afficherImageContact(div,name){
     image.alt="La photo deposée est ici";
     div.appendChild(image);
     image.src = name;
+}
+
+function verifierAvantDeCreer(prenomIsOk,nomIsOk,telephoneIsOk,emailIsOk,imageIsOk){
+    if(prenomIsOk && nomIsOk && telephoneIsOk && emailIsOk && imageIsOk){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 
@@ -156,6 +180,10 @@ function isTelephoneExits(telephone,contacts){
 
 function viewsContact(table){
     let longueur = table.length;
+    if(longueur==0){
+        alert('pas de donnée')
+        return false;
+    }
     let dernierContact = table[longueur-1];
     let container_oneContact = document.createElement('div');
     container_oneContact.classList = "container-oneContact";
@@ -225,8 +253,11 @@ function viewsContact(table){
 //let rep=isinputEmailExits("joel@gmail.com",table);
 //alert(rep);
 btnCreer.addEventListener('click',function(){
-    addContact(table);
-    viewsContact(table)
+    //let checkInputs = verifierAvantDeCreer(prenomIsOk,nomIsOk,telephoneIsOk,emailIsOk,imageIsOk);
+    //if(checkInputs){
+        addContact(table);
+        viewsContact(table);
+    //}
 })
 
 

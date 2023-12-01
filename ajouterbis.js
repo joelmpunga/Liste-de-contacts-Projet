@@ -104,17 +104,17 @@ inputImage.addEventListener('drop',function(e){
 
 function afficherImage(div,file){
     let image = document.createElement('img');
-    let nameImage ="";
     image.setAttribute('style','width:50%;height:100%;margin:auto;');
     image.alt="La photo deposée est ici";
     div.appendChild(image);
     const reader = new FileReader();
-    reader.onload = (e) => {
+    let nameImage = reader.onload = (e) => {
       image.src = e.target.result;
       nameImage = image.src;
+      return nameImage;
     };
     reader.readAsDataURL(file);
-    return nameImage;
+    console.log(nameImage);
 }
 
 function afficherImageContact(div,name){
