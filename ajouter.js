@@ -1,23 +1,23 @@
 let table = [
     {
-        inputPrenom: "Joel",
-        inputNom: "MPUNGA",
-        inputTelephone: "0842672114",
-        inputGroupe:"L1",
-        inputEmail: "joel@gmail.com",
-        textareaBio:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste aperiam repudiandae voluptatem officia voluptate excepturi eligendi mollitia et. Adipisci qui tenetur ipsam perferendis laborum, tempora assumenda totam quidem consectetur optio reiciendis sint expedita aspernatur, officia commodi enim veniam temporibus ab, fuga alias? Aspernatur eius nesciunt aliquid earum odio dolorem nobis. ",
+        prenom: "Joel",
+        nom: "MPUNGA",
+        telephone: "0842672114",
+        groupe:"L1",
+        email: "joel@gmail.com",
+        bio:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste aperiam repudiandae voluptatem officia voluptate excepturi eligendi mollitia et. Adipisci qui tenetur ipsam perferendis laborum, tempora assumenda totam quidem consectetur optio reiciendis sint expedita aspernatur, officia commodi enim veniam temporibus ab, fuga alias? Aspernatur eius nesciunt aliquid earum odio dolorem nobis. ",
         image:"joel.jpg",
     },
 ];
 let imageEnCours="";
 function addContact(table){
     const contact = {
-        inputPrenom: inputPrenom,
-        inputNom: inputNom,
-        inputTelephone: inputTelephone,
-        inputGroupe:inputGroupe,
-        inputEmail: inputEmail,
-        textareaBio:textareaBio,
+        prenom: inputPrenom,
+        nom: inputNom,
+        telephone: inputTelephone,
+        groupe:inputGroupe,
+        email: inputEmail,
+        bio:textareaBio,
         image:image,
     }
     table.push(contact);
@@ -34,9 +34,15 @@ let inputTelephone = document.querySelector('#inputTelephone');
 let inputGroupe = document.querySelector('#inputGroupe');
 let inputEmail = document.querySelector('#inputEmail');
 let textareaBio = document.querySelector('#textareaBio');
+let btnReinit = document.querySelector('.container-button-reinit');
 
 
-let divinputEmail = document.querySelector('#cont-inputEmail');
+btnReinit.addEventListener('click',function(event){
+    reinitialiser();
+})
+
+
+let divinputEmail = document.querySelector('#cont-email');
 inputEmail.addEventListener('blur', function () {
     let regexinputEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
     let erreur = document.createElement('span');
@@ -175,7 +181,7 @@ function viewsContact(table){
     container_entete.classList = "container-entete";
     let identite_oneContact = document.createElement('h4');
     identite_oneContact.classList = "identite-oneContact";
-    identite_oneContact.innerHTML = dernierContact.inputPrenom + " - " +dernierContact.inputNom+ " - " +dernierContact.inputGroupe
+    identite_oneContact.innerHTML = dernierContact.prenom + " - " +dernierContact.nom+ " - " +dernierContact.groupe
     let container_icones_oneContact = document.createElement('div');
     container_icones_oneContact.classList="container-icones-oneContact"
     let aModif = document.createElement('a');
@@ -215,9 +221,9 @@ function viewsContact(table){
     container_icones_oneContact.appendChild(aSuppr)
     aSuppr.appendChild(faSuppr)
     container_detail_contact.appendChild(numero_oneContact);
-    numero_oneContact.innerHTML=dernierContact.inputTelephone;
+    numero_oneContact.innerHTML=dernierContact.telephone;
     container_detail_contact.appendChild(textareaBio_oneContact);
-    textareaBio_oneContact.innerHTML=dernierContact.textareaBio;
+    textareaBio_oneContact.innerHTML=dernierContact.bio;
 }
 
 //let rep=isinputEmailExits("joel@gmail.com",table);
@@ -230,7 +236,18 @@ function reinitialiser(){
     inputNom.value="";
     inputTelephone.value="";
     inputGroupe.value="";
-    inputTelephone.value="";
     inputEmail.value="";
+    textareaBio.innerHTML=""
     image.innerHTML="";
 }
+function afficherAvantModif(contacts,index){
+    let contact = contacts[index];
+    inputPrenom.value=contact.prenom;
+    inputNom.value=contact.nom;
+    inputTelephone.value=contact.telephone;
+    inputGroupe.value=contact.groupe;
+    inputEmail.value=contact.email;
+    textareaBio.innerHTML=contact.bio;
+    image.innerHTML="";
+}
+afficherAvantModif(table,0);
