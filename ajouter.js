@@ -275,7 +275,6 @@ function reinitialiser(){
     inputEmail.value="";
     textareaBio.value="";
     image.innerHTML="";
-    image.innerHTML="<div class='form-input-image'><label class='image-message'>deposer la photo ici</label></div>";
 }
 
 
