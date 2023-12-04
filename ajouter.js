@@ -188,23 +188,27 @@ function viewsContact(table){
     identite_oneContact.classList = "identite-oneContact";
     identite_oneContact.innerHTML = dernierContact.prenom + " - " +dernierContact.nom+ " - " +dernierContact.groupe
     let container_icones_oneContact = document.createElement('div');
-    container_icones_oneContact.classList="container-icones-oneContact"
+    container_icones_oneContact.classList="container-icones-oneContact";
     let aModif = document.createElement('a');
     aModif.href="#"
     aModif.addEventListener('click',function(e){
         e.preventDefault();
-        afficherAvantModif(table,longueur-1)
         let btnModif = document.createElement('button');
+        btnModif.innerText="Modifier";
+        btnModif.type="button";
         let divBtn = document.querySelector('.container-button-form');
         divBtn.appendChild(btnModif)
+        btnCreer.setAttribute('style','display:none;');
         btnModif.classList="container-button-creer";
+        afficherAvantModif(table,longueur-1)
         btnModif.addEventListener('click',function(){
             let data = modifierTableau(table,longueur-1)
-        identite_oneContact.innerHTML = data.prenom + " - " +data.nom+ " - " +data.groupe
-        numero_oneContact.innerHTML=data.telephone;
-        container_image_contact.innerHTML=""
-        afficherImageContact(container_image_contact,data.image)
-        textareaBio_oneContact.innerHTML=data.bio;
+            identite_oneContact.innerHTML = data.prenom + " - " +data.nom+ " - " +data.groupe
+            numero_oneContact.innerHTML=data.telephone;
+            afficherImageContact(container_image_contact,data.image)
+            textareaBio_oneContact.innerHTML=data.bio;
+            btnCreer.setAttribute('style','display:block;');
+            btnModif.setAttribute('style','display:none;');
         })
     })
 
@@ -274,7 +278,6 @@ function reinitialiser(){
     inputTelephone.value="";
     inputEmail.value="";
     textareaBio.value="";
-    image.innerHTML="";
 }
 
 
@@ -303,6 +306,5 @@ function afficherAvantModif(contacts,index){
     inputTelephone.value=contact.telephone;
     inputGroupe.value=contact.groupe;
     inputEmail.value=contact.email;
-    textareaBio.innerHTML=contact.bio;
-    image.innerHTML="";
+    textareaBio.value=contact.bio;
 }
