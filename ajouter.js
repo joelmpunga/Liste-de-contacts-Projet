@@ -8,15 +8,8 @@ function addContact(table){
         console.log("in ...",nomImage);
       };
       reader.readAsDataURL(imageEnCours);
-      if(reader.EMPTY){
-        alert("Aucun fichier n'est chargé")
-      }
-      if(reader.LOADING){
-        alert("Chargement")
-      }
       if(reader.DONE){
-        alert("Chargé")
-        console.log("out ...",nomImage);
+        alert("donnée inserée!");
         const contact = {
             prenom: inputPrenom.value,
             nom: inputNom.value,
@@ -27,8 +20,6 @@ function addContact(table){
             image:nomImage,
         }
         table.push(contact);
-        console.log("out ...",contact.image);
-
       }
 }
 let inputImage = document.querySelector('.container-image-form');
@@ -203,12 +194,18 @@ function viewsContact(table){
     aModif.addEventListener('click',function(e){
         e.preventDefault();
         //afficherAvantModif(table,longueur-1)
-        let data = modifierTableau(table,longueur-1)
+        let btnModif = document.createElement('button');
+        let divBtn = document.querySelector('.container-button-form');
+        divBtn.appendChild(btnModif)
+        btnModif.classList="container-button-creer";
+        btnModif.addEventListener('click',function(){
+            let data = modifierTableau(table,longueur-1)
         identite_oneContact.innerHTML = data.prenom + " - " +data.nom+ " - " +data.groupe
         numero_oneContact.innerHTML=data.telephone;
         container_image_contact.innerHTML=""
         afficherImageContact(container_image_contact,data.image)
         textareaBio_oneContact.innerHTML=data.bio;
+        })
     })
 
     let faModif = document.createElement('i');
@@ -218,8 +215,15 @@ function viewsContact(table){
     aSuppr.href=""
     aSuppr.addEventListener('click',function(e){
         e.preventDefault();
-        if(supprimer(table,longueur-1)){
-            container_oneContact.parentNode.removeChild(container_oneContact);
+        let isApproved = confirm("Etes vou sûrs de vouloir Supprimer? La suppression est irreversible!")
+        if(isApproved){
+            if(supprimer(table,longueur-1)){
+                container_oneContact.parentNode.removeChild(container_oneContact);
+                alert("La donnée a été supprimée avec success!");
+            }
+        }
+        else{
+            alert("Donnée non supprimée!");
         }
     })
 
