@@ -193,7 +193,7 @@ function viewsContact(table){
     aModif.href="#"
     aModif.addEventListener('click',function(e){
         e.preventDefault();
-        //afficherAvantModif(table,longueur-1)
+        afficherAvantModif(table,longueur-1)
         let btnModif = document.createElement('button');
         let divBtn = document.querySelector('.container-button-form');
         divBtn.appendChild(btnModif)
@@ -261,6 +261,7 @@ btnCreer.addEventListener('click',function(){
     //if(checkInputs){
         addContact(table);
         viewsContact(table);
+        reinitialiser();
     //}
 })
 
@@ -272,7 +273,9 @@ function reinitialiser(){
     inputGroupe.value="";
     inputTelephone.value="";
     inputEmail.value="";
+    textareaBio.value="";
     image.innerHTML="";
+    image.innerHTML="<div class='form-input-image'><label class='image-message'>deposer la photo ici</label></div>";
 }
 
 
@@ -292,4 +295,15 @@ function supprimer(table,index){
         table.splice(index,1);
         return true;
     }
+}
+
+function afficherAvantModif(contacts,index){
+    let contact = contacts[index];
+    inputPrenom.value=contact.prenom;
+    inputNom.value=contact.nom;
+    inputTelephone.value=contact.telephone;
+    inputGroupe.value=contact.groupe;
+    inputEmail.value=contact.email;
+    textareaBio.innerHTML=contact.bio;
+    image.innerHTML="";
 }
