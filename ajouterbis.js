@@ -133,7 +133,7 @@ function afficherImage(div,file){
 
 function afficherImageContact(div,name){
     let image = document.createElement('img');
-    image.setAttribute('style','width:180px;height:180px;margin:auto;border-radius:50%');
+    image.setAttribute('style','width:7rem;height:7rem;margin:auto;border-radius:50%');
     image.alt="La photo deposée est ici";
     div.appendChild(image);
     image.src = name;
@@ -248,6 +248,5 @@ function afficherAvantModif(contacts,index){
     inputGroupe.value=contact.groupe;
     inputEmail.value=contact.email;
     textareaBio.innerHTML=contact.bio;
-    image.innerHTML="";
 }
 afficherAvantModif(table,0);
