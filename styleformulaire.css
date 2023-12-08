@@ -1,36 +1,37 @@
+<<<<<<< HEAD
 
+=======
+:root{
+    --couleur-blanch:#fff;
+}
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
 .container-form-contact{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     padding: 0px;
     gap: 1rem;
+<<<<<<< HEAD
     position: absolute;
     width: 80%;
     height: 70rem;
     left: 4%;
     top: 15%;
+=======
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
 }
 
 .container-form{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    width: 60%;
-    height: 68rem;
+    width: 45%;
+    height:68rem;
     border: 1px solid #C4C4C4;
-}
-
-.container-contact{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    width: 48rem;
-    height: 63rem;
-    background: #FFFFFF;
-    border: 1px solid #C4C4C4;
+    scroll-behavior: smooth;
 }
 
 .container-title-form{
@@ -39,7 +40,7 @@
     align-items: flex-start;
     padding: 12px 0px;
     width: 100%;
-    height: 4rem;
+    height: 54px;
     background: #0880D6;
 }
 
@@ -50,20 +51,18 @@
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 30px;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--couleur-blanch); 
 }
 .container-fields-button-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding: 2.5rem 2.5rem;
-    gap: 26px;
-    width: 60%;
+    padding: 0.5rem 2.5rem;
+    gap: 6px;
+    width: auto;
     height: 100%;
-    background: #FFFFFF;
+    background: var(--couleur-blanch);
 }
 
 .container-fields-form{
@@ -72,9 +71,9 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-    gap: 20px;
-    width: 33rem;
-    height: 50rem;
+    gap: 1rem;
+    width: 100%;
+    height: auto;
 }
 
 .container-button-form{
@@ -83,18 +82,17 @@
     align-items: center;
     padding: 0px;
     gap: 3rem;
-    width: 18rem;
+    width: 100%;
     height: 5rem;
 }
 
 .container-field{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
-    gap: 11px;
-    width: 32.5rem;
-    height: 5rem;
+    width: 100%;
+    height: auto;
+    margin:0%
 }
 
 .container-field-textarea{
@@ -103,18 +101,16 @@
     align-items: flex-start;
     padding: 0px;
     gap: 11px;
-    width: 32.5rem;
+    width: 100%;
     height: 9.5rem;
 }
 
 .label-field{
     width: 100%;
-    height: 3rem;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 3rem;
     text-align:left;
     color: #0880D6;
 }
@@ -122,7 +118,7 @@
 .input-form{
     width: 100%;
     height: 45px;
-    background: #FFFFFF;
+    background: var(--couleur-blanch);
     border: 1px solid #C4C4C4;
     
 }
@@ -134,16 +130,14 @@
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
     text-align:left;
     color: #0880D6;
-    margin: 0.6rem 0px;
 }
 
 .input-form-textarea{
-    width: 32.5rem;
+    width: 100%;
     height: 7rem;
-    background: #FFFFFF;
+    background: var(--couleur-blanch);
     border: 1px solid #C4C4C4;
     outline-color: #0880D6; 
 }
@@ -154,18 +148,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 45px 0px;
-    gap: 218px;
-    width: 32.7rem;
+    gap: 18px;
+    width: 100%;
     height: 8rem;
     border: 1px dashed #C4C4C4;
-    margin: 5px 15rem;
 }
 
 .form-input-image{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     padding: 0px;
     gap: 10px;
     margin: 0 auto;
@@ -175,14 +166,14 @@
 
 .image-message{
     width: 9rem;
-    height: 48px;
+    height: auto;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
     text-align: center;
     color: #555555;
+    margin-top: 60px;
 }
 
 .container-button-creer{
@@ -195,6 +186,7 @@
     height: 44px;
     background: #0880D6;
     border-style: none;
+    color: var(--couleur-blanch);
 
 }
 
@@ -208,6 +200,7 @@
     height: 44px;
     background: #FF3838;
     border-style: none;
+    color: var(--couleur-blanch);
 }
 
 .button-creer{
@@ -217,9 +210,8 @@
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--couleur-blanch);
 
 }
 
@@ -230,20 +222,24 @@
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--couleur-blanch);
 }
 
 .container-cont{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
+<<<<<<< HEAD
     width: 80%;
     height: 70%;
     background: #FFFFFF;
     border-width: 1px 1px 0px 1px;
+=======
+    width: 50%;
+    background: var(--couleur-blanch);
+    border-width: 1px 1px 0px 1px; 
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
     border-style: solid;
     border-color: #DDDDDD;
 }
@@ -252,9 +248,14 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+<<<<<<< HEAD
     padding: 12px 0px;
     width: 100%;
     height: 4rem;
+=======
+    width: 100%;
+    height: 77px;
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
     background: #0880D6;
 }
 
@@ -265,18 +266,18 @@
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 30px;
     text-align: center;
-    color: #FFFFFF;
+    color: var(--couleur-blanch);
 }
 
 .container-oneContact{
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     padding: 20px;
+<<<<<<< HEAD
     width: 90%;
     height: 13rem;
     border-bottom: 1px solid #C4C4C4;
@@ -286,16 +287,32 @@
     width: 10em;
     height: 10em;
     border-radius: 60%;
+=======
+    width:100%;
+    height: auto;
+    border-bottom: 1px solid #C4C4C4;
 }
+
+.image-form{
+    width:auto;
+    height:100%;
+    margin:auto;
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
+}
+
+.container-image-contact{
+    width: auto;
+    height: auto;
+}
+
 
 .container-detail-contact{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 14px;
-    width: 48rem;
-    height: 127px;
+    padding: 45px;
+    gap: 7px;
+    width: 60%;
+    height: 100%;
 }
 
 .container-entete{
@@ -303,20 +320,19 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 289px;
-    width: 509.92px;
-    height: 24px;
+   
+    width: 90%;
+    height: 30px;
 }
 
 
 .identite-oneContact{
-    width: 183px;
+    width: 560px;
     height: 24px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
     color: #555555;
 }
 
@@ -350,7 +366,6 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 21px;
     color: #555555;
 }
 
@@ -361,7 +376,6 @@
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 18px;
     color: #555555;
 }
 
@@ -369,11 +383,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 1.5rem 2rem;
     gap: 24px;
     position: absolute;
+<<<<<<< HEAD
     width: 98.5%;
     height: 50px;
+=======
+    width: 100%;
+    height: 70px;
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
     left: 0px;
     top: 0px;
     background: #0880D6;
@@ -386,6 +404,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
+<<<<<<< HEAD
     line-height: 20px;    
     color: #FFFFFF;    
 }
@@ -399,3 +418,100 @@
 .container-field.error input{
     border-color: var(--color-error);
 } */
+=======
+    color: var(--couleur-blanch);
+    padding-left: 20px;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 767px)  {
+    .container-form-contact{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+        height: auto;
+        padding-top: 50px;
+    }
+
+    .container-form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height:68rem;
+        border: 1px solid #C4C4C4;
+        margin-top: 40px;
+    }
+
+    .container-cont{
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 1.5rem;
+        width: 40%;
+        background: var(--couleur-blanch);
+        border-width: 1px 1px 0px 1px; 
+        border-style: solid;
+        border-color: #DDDDDD;
+    }
+
+    .container-fields-button-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 83%;
+        height: 100%;
+        padding: 1px 15px;
+        margin: 2px auto;
+        background: var(--couleur-blanch);
+    }
+
+    .textareaBio-oneContact{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px;
+        width: 100%;
+        height: auto;
+    }
+    .container-cont{
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+        width: 100%;
+        background: var(--couleur-blanch);
+        border-width: 1px 1px 0px 1px; 
+        border-style: solid;
+        border-color: #DDDDDD;
+    }
+    .container-oneContact{
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        align-items: center;
+        padding: 20px;
+        width:100%;
+        height: auto;
+        border-bottom: 1px solid #C4C4C4;
+    }
+    .container-detail-contact{
+        display: flex;
+        flex-direction: column;
+        padding: 45px;
+        gap: 7px;
+        width: 100%;
+        height: 100%;
+    }
+    .container-button-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+        gap: 1rem;
+        width: 100%;
+        height: auto;
+    }
+    
+   }
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726

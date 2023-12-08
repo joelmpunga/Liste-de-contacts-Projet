@@ -104,17 +104,30 @@ inputImage.addEventListener('drop',function(e){
 
 function afficherImage(div,file){
     let image = document.createElement('img');
+<<<<<<< HEAD
     let nameImage ="";
+=======
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
     image.setAttribute('style','width:50%;height:100%;margin:auto;');
     image.alt="La photo deposée est ici";
     div.appendChild(image);
     const reader = new FileReader();
+<<<<<<< HEAD
     reader.onload = (e) => {
       image.src = e.target.result;
       nameImage = image.src;
     };
     reader.readAsDataURL(file);
     return nameImage;
+=======
+    let nameImage = reader.onload = (e) => {
+      image.src = e.target.result;
+      nameImage = image.src;
+      return nameImage;
+    };
+    reader.readAsDataURL(file);
+    console.log(nameImage);
+>>>>>>> 02df3327cfa603bf839a314f6aa1a5c4b55b1726
 }
 
 function afficherImageContact(div,name){
