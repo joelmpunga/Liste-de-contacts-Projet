@@ -9,22 +9,21 @@
   <script defer src="icones/all.js"></script>
 </head>
 <style>
-
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
 
-  body{
+  body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
- 
-  .modal{
+
+  .modal {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -32,34 +31,39 @@
     top: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(77,77,77,.7);
+    background-color: rgba(77, 77, 77, .7);
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .modal:target{
+
+  .modal:target {
     visibility: visible;
     opacity: 1;
 
   }
+
   /* Modal Content */
-.modal_content {
-  background-color: white;
-  padding: 1.5em 2rem;
-  width: 500px;;
-  max-width: 90%;
-  position: relative;
-  
-}
-/* The Close Button */
-.close {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  color: grey;
-  text-decoration: none;
-}
-/* 
+  .modal_content {
+    background-color: white;
+    padding: 1.5em 2rem;
+    width: 500px;
+    ;
+    max-width: 90%;
+    position: relative;
+
+  }
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: grey;
+    text-decoration: none;
+  }
+
+  /* 
 .close:hover,
 .close:focus {
   color: #000;
@@ -67,6 +71,7 @@
   cursor: pointer;
 } */
 </style>
+
 <body>
   <!--
   <div class="container-icones-oneContact">
@@ -91,30 +96,32 @@
 
   <!--Déclenchement de la fénètre modale avec l'icone modification-->
 
-  
+
 
   <!--Fénètre modale-->
-  <a href="#demo"><i class="far fa-pen-to-square"></i> <!--<i class="fa-solid fa-trash"></i></a>-->
-  <div id="myModal" class="modal">
+  <a href="#demo"><i class="far fa-pen-to-square"></i> <!--<i class="fa-solid fa-trash"></i>--></a>
+    <div id="myModal" class="modal">
 
-    
-    <!--Modal content-->
-    <div class="modal_content">
-      <a href="#" class="close">&times;</a>
-      <p>Voulez-vous poursuivre la modification ?</p>
+
+      <!--Modal content-->
+      <div class="modal_content">
+        <a href="#" class="close">&times;</a>
+        <p>Voulez-vous poursuivre la modification ?</p>
+      </div>
     </div>
-  </div>
-  
 
 
-<script>
-  let a = document.querySelector('a');
-  let modal = document.querySelector('.modal')
 
-a.addEventListner('click', function (){
-a.preventDefault
-modal.visible=true;
-})
-</script>
+    <script>
+      let a = document.querySelector('a');
+      let modal = document.querySelector('.modal')
+
+      a.addEventListener('click', function () {
+        console.log('gggggg');
+        a.preventDefault
+        modal.visible = true;
+      })
+    </script>
 </body>
+
 </html>
