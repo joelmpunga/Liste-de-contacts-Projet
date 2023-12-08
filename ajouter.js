@@ -198,13 +198,15 @@ function viewsContact(table) {
             numero_oneContact.innerHTML = data.telephone;
             //afficherImageContact(container_image_contact,data.image)
             textareaBio_oneContact.innerHTML = data.bio;
-            annuler(btnModif,btnAnnuler,aModif);
+            annuler(btnModif,btnAnnuler);
             btnCreer.setAttribute('style', 'display:block;');
             btnModif.setAttribute('style', 'display:none;');
         })
-        btnAnnuler.addEventListener('click',annuler);
+        btnAnnuler.addEventListener('click',function(){
+            annuler(btnModif,btnAnnuler)}
+            );
     })
-function annuler(btnModif,btnAnnuler,aModif){
+function annuler(btnModif,btnAnnuler){
         linkModifClicked = false;
         btnCreer.setAttribute('style', 'display:block;');
         btnReinit.setAttribute('style', 'display:block;');
