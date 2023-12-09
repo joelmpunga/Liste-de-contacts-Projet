@@ -1,3 +1,4 @@
+alert("donnée inserée!");
 let table = [];
 let imageEnCours;
 function addContact(table) {
@@ -21,6 +22,8 @@ function addContact(table) {
         table.push(contact);
     }
 }
+alert("donnée inserée!");
+
 let inputImage = document.querySelector('.container-image-form');
 let divEnfant = document.querySelector('.form-input-image');
 let container = document.querySelector('.container-fields-form')
@@ -34,21 +37,60 @@ let inputEmail = document.querySelector('#inputEmail');
 let textareaBio = document.querySelector('#textareaBio');
 let btnCreer = document.querySelector('.container-button-creer')
 let btnReinit = document.querySelector('.container-button-reinit')
-let divinputEmail = document.querySelector('#cont-email');
+let divinputPrenom = document.querySelector("#prenom")
+let divinputNom = document.querySelector("#nom")
+let divinputTelephone = document.querySelector("#telephone")
+let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
+let regexPrenom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏÊ- ]){3,50}$/;
+let regexNom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏ- ]){3,50}$/;
+alert("donnée inserée!");
+
+spanError = document.createElement('span');
+let prenomIsOk=false;
+let nomIsOk=false;
+let emailIsOk=false;
+let telephoneIsOk=false;
 inputEmail.addEventListener('blur', function () {
-    let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
-    let erreur = document.createElement('p');
-    erreur.setAttribute("style", "color:#f00;")
-    if (!regexEmail.test(inputEmail.value)) {
-        erreur.innerText = "votre adresse Mail n'est pas valide";
-        divinputEmail.appendChild(erreur);
-        inputEmail.style.border = "2px solid red";
-    }
-    inputEmail.addEventListener('focus', function () {
-        inputEmail.style.border = "";
-        erreur.parentNode.removeChild(erreur)
-    })
+    let divinputEmail = document.querySelector('#email');
+    validateInput(divinputEmail,inputEmail,regexEmail,"votre adresse Mail n'est pas valide")
 })
+
+function validateInput(divInput,input,regex,errorMesage){
+    if (!regex.test(input.value)) {
+        errorOnValidate(divInput,errorMesage, input, spanError)
+        return false;
+    }
+    else{
+        clearErrorAfterValidation(divInput, input,spanError)
+        return true;
+    }
+}
+
+function errorOnValidate(divParent, errorMesage, input, span) {
+    span.innerText = errorMesage;
+    divParent.appendChild(span);
+    input.style.border = "2px solid red";
+    span.setAttribute("style", "color:#f00;")
+}
+function clearErrorAfterValidation(divParent,input, span) {
+    divParent.removeChild(span);
+    input.style.border='';
+}
+
+inputPrenom.addEventListener('blur', function () {
+    prenomIsOk=validateInput(divinputPrenom,inputPrenom,regexPrenom,"Le prenom est invalide, de 3 à 50 caracteres requis")
+})
+
+//fonction nom
+inputNom.addEventListener('blur', function () {
+    nomIsOk=validateInput(divinputNom,inputNom,regexNom,"Le nom est invalide, de 3 à 50 caracteres requis")
+})
+inputTelephone.addEventListener('blur', function () {
+    let regexTelephone = /^(081|082|084|089|090|091|093|097|099)([0-9]){7}$/;
+    telephoneIsOk=validateInput(divinputTelephone,inputTelephone,regexTelephone,"Le numero est invalide! exemple : 0971112233")
+})
+alert("donnée inserée!");
+
 inputImage.addEventListener('dragover', function (e) {
     e.stopPropagation();
     e.preventDefault();
@@ -100,7 +142,7 @@ inputImage.addEventListener('drop', function (e) {
 })
 function afficherImage(div, file) {
     let image = document.createElement('img');
-    image.classList='image-form';
+    image.classList = 'image-form';
     image.id = "image_formulaire";
     image.alt = "La photo deposée est ici";
     div.appendChild(image);
@@ -119,6 +161,12 @@ function afficherImageContact(div, name) {
     image.src = name;
 }
 function verifierAvantDeCreer(prenomIsOk, nomIsOk, telephoneIsOk, emailIsOk, imageIsOk) {
+    alert(prenomIsOk)
+    // alert(nomIsOk)
+    // alert(telephoneIsOk)
+    // alert(emailIsOk)
+    // alert(imageIsOk)
+
     if (prenomIsOk && nomIsOk && telephoneIsOk && emailIsOk && imageIsOk) {
         return true;
     }
@@ -185,7 +233,7 @@ function viewsContact(table) {
         btnModif.classList = "container-button-creer";
         let btnAnnuler = document.createElement('button');
         btnAnnuler.innerText = "Annuler";
-        if(!linkModifClicked){
+        if (!linkModifClicked) {
             divBtn.prepend(btnModif)
             divBtn.appendChild(btnAnnuler)
         }
@@ -198,23 +246,24 @@ function viewsContact(table) {
             numero_oneContact.innerHTML = data.telephone;
             //afficherImageContact(container_image_contact,data.image)
             textareaBio_oneContact.innerHTML = data.bio;
-            annuler(btnModif,btnAnnuler);
+            annuler(btnModif, btnAnnuler);
             btnCreer.setAttribute('style', 'display:block;');
             btnModif.setAttribute('style', 'display:none;');
         })
-        btnAnnuler.addEventListener('click',function(){
-            annuler(btnModif,btnAnnuler)}
-            );
+        btnAnnuler.addEventListener('click', function () {
+            annuler(btnModif, btnAnnuler)
+        }
+        );
     })
-function annuler(btnModif,btnAnnuler){
+    function annuler(btnModif, btnAnnuler) {
         linkModifClicked = false;
         btnCreer.setAttribute('style', 'display:block;');
         btnReinit.setAttribute('style', 'display:block;');
-        btnModif.style.display='none';
-        btnAnnuler.style.display='none';
-        divEnfant.style.display='block';
+        btnModif.style.display = 'none';
+        btnAnnuler.style.display = 'none';
+        divEnfant.style.display = 'block';
         reinitialiser();
-}
+    }
 
     let faModif = document.createElement('i');
     faModif.classList = "fa fa-user-pen icone-modification"
@@ -253,17 +302,17 @@ function annuler(btnModif,btnAnnuler){
     textareaBio_oneContact.innerHTML = dernierContact.bio;
 }
 btnCreer.addEventListener('click', function () {
-    //let checkInputs = verifierAvantDeCreer(prenomIsOk,nomIsOk,telephoneIsOk,emailIsOk,imageIsOk);
-    //if(checkInputs){
+    let checkInputs = verifierAvantDeCreer(prenomIsOk,nomIsOk,telephoneIsOk,emailIsOk,imageEnCours);
+    if(checkInputs){
     addContact(table);
     viewsContact(table);
     reinitialiser();
-    //}
-    // else{
-    //appeler les fonctions validation
-    // }
+    }
+    else{
+    alert("La création a echoué! veillez remplir les champ et/ou la photo");
+    }
 })
-btnReinit.addEventListener('click',reinitialiser)
+btnReinit.addEventListener('click', reinitialiser)
 function reinitialiser() {
     inputPrenom.value = "";
     inputNom.value = "";
@@ -274,9 +323,14 @@ function reinitialiser() {
     textareaBio.value = "";
     divEnfant.style.display = "block";
     let image = document.querySelector('#image_formulaire');
-    if(image){
+    if (image) {
         image.parentNode.removeChild(image);
     }
+    imageEnCours="";
+    prenomIsOk=false;
+    nomIsOk=false;
+    emailIsOk=false;
+    telephoneIsOk=false;
 }
 function modifierTableau(table, index) {
     table[index].prenom = inputPrenom.value;
@@ -304,16 +358,8 @@ function afficherAvantModif(contacts, index) {
     inputEmail.value = contact.email;
     textareaBio.value = contact.bio;
     //divEnfant.style.display='none';
-    image.classList='image-form';
-    image.alt="image à modifier";
-    image.src=contact.image;
+    image.classList = 'image-form';
+    image.alt = "image à modifier";
+    image.src = contact.image;
     //inputImage.appendChild(image)
-}
-function errorOnValidate(divParent,errorMesage,input,span){
-    span.innerText = errorMesage;
-    divParent.appendChild(span);
-    input.style.border = "2px solid red";
-}
-function clearErrorAfterValidation(divParent,span){
-    divParent.removeChild(span);
 }
