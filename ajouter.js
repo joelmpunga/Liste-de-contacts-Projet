@@ -1,5 +1,5 @@
 let table = [];
-let imageEnCours="";
+let imageEnCours = "";
 function addContact(table) {
     let nomImage;
     const reader = new FileReader();
@@ -24,7 +24,6 @@ function addContact(table) {
 let inputImage = document.querySelector('.container-image-form');
 let divEnfant = document.querySelector('.form-input-image');
 let container = document.querySelector('.container-fields-form')
-inputImage.dragglable = true;
 let erreurImage = false;
 let inputPrenom = document.querySelector('#inputPrenom');
 let inputNom = document.querySelector('#inputNom');
@@ -38,61 +37,73 @@ let divinputPrenom = document.querySelector("#prenom")
 let divinputNom = document.querySelector("#nom")
 let divinputTelephone = document.querySelector("#telephone")
 let divinputEmail = document.querySelector('#email');
+let container_image = document.querySelector('#image');
 let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
-let regexPrenom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏÊ -]){3,50}$/;
 let regexNom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏ -]){3,50}$/;
 let regexTelephone = /^(081|082|084|089|090|091|093|097|099)([0-9]){7}$/;
-let prenomIsOk=false;
-let nomIsOk=false;
-let emailIsOk=false;
-let telephoneIsOk=false;
+let prenomIsOk = false;
+let nomIsOk = false;
+let emailIsOk = false;
+let telephoneIsOk = false;
 inputEmail.addEventListener('blur', function () {
-    validateInput(divinputEmail,inputEmail,regexEmail,"votre adresse Mail n'est pas valide")
+    validateInput(divinputEmail, inputEmail, regexEmail, "votre adresse Mail n'est pas valide")
 })
-
-function validateInput(divInput,input,regex,errorMesage){
+function validateInput(divInput, input, regex, errorMesage) {
     let spanAEffacer = divInput.querySelector('span');
     if (!regex.test(input.value)) {
         let spanError = document.createElement('span');
-        if(spanAEffacer){
-            clearErrorAfterValidation(divInput, input,spanAEffacer)
-            errorOnValidate(divInput,errorMesage, input, spanError)
+        if (spanAEffacer) {
+            clearErrorAfterValidation(divInput, input, spanAEffacer)
+            errorOnValidate(divInput, errorMesage, input, spanError)
             return false;
         }
-        else{
-            errorOnValidate(divInput,errorMesage, input, spanError)
+        else {
+            errorOnValidate(divInput, errorMesage, input, spanError)
             return false;
         }
     }
-    else{
-        if(spanAEffacer){
-            clearErrorAfterValidation(divInput, input,spanAEffacer)
+    else {
+        if (spanAEffacer) {
+            clearErrorAfterValidation(divInput, input, spanAEffacer)
         }
         return true;
     }
 }
-
 function errorOnValidate(divParent, errorMesage, input, span) {
     span.innerText = errorMesage;
     divParent.appendChild(span);
     input.style.border = "2px solid red";
     span.setAttribute("style", "color:#f00;")
 }
-function clearErrorAfterValidation(divParent,input, span) {
+function clearErrorAfterValidation(divParent, input, span) {
     divParent.removeChild(span);
-    input.style.border='';
+    input.style.border = '';
 }
-
+function errorOnDropImage(inputImage, erreurImage, span, container, MesageErreur) {
+    divEnfant.style.display = "block";
+    let image = inputImage.querySelector('img');
+    if (image) {
+        image.parentNode.removeChild(image);
+    }
+    let spanAEffacer = container.querySelector('span');
+    if (spanAEffacer) {
+        container.removeChild(spanAEffacer);
+    }
+    inputImage.setAttribute('style', 'border-color:red;');
+    span.innerHTML = MesageErreur;
+    span.style.color = "red";
+    erreurImage = true;
+    container.appendChild(span);
+    imageEnCours = "";
+}
 inputPrenom.addEventListener('blur', function () {
-    validateInput(divinputPrenom,inputPrenom,regexNom,"Le prenom est invalide, de 3 à 50 caracteres requis")
+    validateInput(divinputPrenom, inputPrenom, regexNom, "Le prenom est invalide, de 3 à 50 caracteres requis")
 })
-
-//fonction nom
 inputNom.addEventListener('blur', function () {
-    validateInput(divinputNom,inputNom,regexNom,"Le nom est invalide, de 3 à 50 caracteres requis")
+    validateInput(divinputNom, inputNom, regexNom, "Le nom est invalide, de 3 à 50 caracteres requis")
 })
 inputTelephone.addEventListener('blur', function () {
-    validateInput(divinputTelephone,inputTelephone,regexTelephone,"Le numero est invalide! exemple : 0971112233")
+    validateInput(divinputTelephone, inputTelephone, regexTelephone, "Le numero est invalide! exemple : 0971112233")
 })
 inputImage.addEventListener('dragover', function (e) {
     e.stopPropagation();
@@ -106,38 +117,29 @@ inputImage.addEventListener('drop', function (e) {
     const fileList = e.dataTransfer.files;
     let longeur = fileList.length;
     let file = fileList[longeur - 1];
-    const size = file.size;
-    const ext = file.type;
     divEnfant.style.display = "block";
     let span = document.createElement('span');
     if (erreurImage) {
         container.lastChild.remove();
     }
-    if (ext != "image/png" && ext != "image/jpg" && ext != "image/jpeg") {
-        inputImage.setAttribute('style', 'border-color:red;');
-        if (!erreurImage) {
-            inputImage.lastChild.remove();
-        }
-        span.innerHTML = "Le format autorisé c'est png et jpg";
-        span.style.color = "red";
-        erreurImage = true;
-        container.appendChild(span);
+    if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg") {
+        errorOnDropImage(inputImage, erreurImage, span, container_image, "Le format autorisé c'est png et jpg")
     }
-    else if (size > 5000000) {
-        inputImage.setAttribute('style', 'border-color:red;');
-        if (!erreurImage) {
-            inputImage.lastChild.remove();
-        }
-        span.innerHTML = "La taille autorisé est d'au plus 5Mo";
-        span.style.color = "red";
-        erreurImage = true;
-        container.appendChild(span);
+    else if (file.size > 5000000) {
+        errorOnDropImage(inputImage, erreurImage, span, container_image, "La taille autorisé est d'au plus 5Mo")
     }
     else {
         divEnfant.style.display = "none";
+        let spanAEffacer = container_image.querySelector('span');
+        let imageExistante = inputImage.querySelector('img');
+        if (imageExistante) {
+            imageExistante.parentNode.removeChild(imageExistante)
+        }
+        if (spanAEffacer) {
+            container_image.removeChild(spanAEffacer);
+        }
         if (!erreurImage) {
-            container.lastChild.remove;
-            inputImage.lastChild.remove();
+            inputImage.lastChild.remove;
         }
         afficherImage(inputImage, file);
         erreurImage = false;
@@ -149,23 +151,14 @@ function afficherImage(div, file) {
     image.id = "image_formulaire";
     image.alt = "La photo deposée est ici";
     div.appendChild(image);
-    readerFile(image,file)
-    // const reader = new FileReader();
-    // reader.onload = (e) => {
-    //     image.src = e.target.result;
-    // };
-    // if(reader.DONE){
-    //     imageEnCours = file;
-    // }
-    // reader.readAsDataURL(file);
+    readerFile(image, file)
 }
-
-function readerFile(image,file){
+function readerFile(image, file) {
     const reader = new FileReader();
     reader.onload = (e) => {
         image.src = e.target.result;
     };
-    if(reader.DONE){
+    if (reader.DONE) {
         imageEnCours = file;
     }
     reader.readAsDataURL(file);
@@ -178,16 +171,19 @@ function afficherImageContact(div, name) {
     image.src = name;
 }
 function verifierAvantDeCreer() {
-    prenomIsOk = validateInput(divinputPrenom,inputPrenom,regexNom,"Le prenom est invalide, de 3 à 50 caracteres requis")
-    nomIsOk=validateInput(divinputNom,inputNom,regexNom,"Le nom est invalide, de 3 à 50 caracteres requis")
-    emailIsOk=validateInput(divinputEmail,inputEmail,regexEmail,"votre adresse Mail n'est pas valide")
-    telephoneIsOk=validateInput(divinputTelephone,inputTelephone,regexTelephone,"Le numero est invalide! exemple : 0971112233")
+    prenomIsOk = validateInput(divinputPrenom, inputPrenom, regexNom, "Le prenom est invalide, de 3 à 50 caracteres requis")
+    nomIsOk = validateInput(divinputNom, inputNom, regexNom, "Le nom est invalide, de 3 à 50 caracteres requis")
+    emailIsOk = validateInput(divinputEmail, inputEmail, regexEmail, "votre adresse Mail n'est pas valide")
+    telephoneIsOk = validateInput(divinputTelephone, inputTelephone, regexTelephone, "Le numero est invalide! exemple : 0971112233")
     let span = document.createElement('span');
-    if(verifyIfEmailExits(inputEmail.value,table)){
-        errorOnValidate(divinputEmail, "votre adresse Mail existe deja", inputEmail, span)
+    if (!imageEnCours) {
+        errorOnDropImage(inputImage, erreurImage, span, container_image, "Veuillez glisser une image")
+    }
+    if (verifyIfEmailExits(inputEmail.value, table)) {
+        errorOnValidate(divinputEmail, "votre adresse e-mail existe deja", inputEmail, span)
         return false;
     }
-    else if(verifyIfTelephoneExits(inputTelephone.value,table)){
+    else if (verifyIfTelephoneExits(inputTelephone.value, table)) {
         errorOnValidate(divinputTelephone, "votre numéro existe deja", inputTelephone, span)
         return false;
     }
@@ -203,11 +199,9 @@ function verifyIfEmailExits(inputEmail, contacts) {
         return false;
     }
     else {
-        for (const contact of contacts) {
-            if (contact.email == inputEmail) {
+        for (const contact of contacts)
+            if (contact.email == inputEmail)
                 return true;
-            }
-        }
     }
     return false;
 }
@@ -216,11 +210,9 @@ function verifyIfTelephoneExits(telephone, contacts) {
         return false;
     }
     else {
-        for (const contact of contacts) {
-            if (contact.telephone == telephone) {
+        for (const contact of contacts)
+            if (contact.telephone == telephone)
                 return true;
-            }
-        }
     }
     return false;
 }
@@ -265,11 +257,9 @@ function viewsContact(table) {
             identite_oneContact.innerHTML = data.prenom + " - " + data.nom + " - " + data.groupe
             numero_oneContact.innerHTML = data.telephone;
             let image = container_image_contact.querySelector('img');
-            console.log(imageEnCours);
-            if(imageEnCours){
-                readerFile(image,imageEnCours)
+            if (imageEnCours) {
+                readerFile(image, imageEnCours)
             }
-            //afficherImageContact(container_image_contact,data.image)
             textareaBio_oneContact.innerHTML = data.bio;
             annuler(btnModif, btnAnnuler);
             btnCreer.setAttribute('style', 'display:block;');
@@ -289,7 +279,6 @@ function viewsContact(table) {
         divEnfant.style.display = 'block';
         reinitialiser();
     }
-
     let faModif = document.createElement('i');
     faModif.classList = "fa fa-user-pen icone-modification"
     let aSuppr = document.createElement('a');
@@ -327,11 +316,11 @@ function viewsContact(table) {
     textareaBio_oneContact.innerHTML = dernierContact.bio;
 }
 btnCreer.addEventListener('click', function () {
-    let checkInputs = verifierAvantDeCreer(prenomIsOk,nomIsOk,telephoneIsOk,emailIsOk,imageEnCours);
-    if(checkInputs){
-    addContact(table);
-    viewsContact(table);
-    reinitialiser();
+    let checkInputs = verifierAvantDeCreer(prenomIsOk, nomIsOk, telephoneIsOk, emailIsOk, imageEnCours);
+    if (checkInputs) {
+        addContact(table);
+        viewsContact(table);
+        reinitialiser();
     }
 })
 btnReinit.addEventListener('click', reinitialiser)
@@ -348,11 +337,11 @@ function reinitialiser() {
     if (image) {
         image.parentNode.removeChild(image);
     }
-    imageEnCours="";
-    prenomIsOk=false;
-    nomIsOk=false;
-    emailIsOk=false;
-    telephoneIsOk=false;
+    imageEnCours = "";
+    prenomIsOk = false;
+    nomIsOk = false;
+    emailIsOk = false;
+    telephoneIsOk = false;
 }
 function modifierTableau(table, index) {
     table[index].prenom = inputPrenom.value;
@@ -379,9 +368,7 @@ function afficherAvantModif(contacts, index) {
     inputGroupe.value = contact.groupe;
     inputEmail.value = contact.email;
     textareaBio.value = contact.bio;
-    //divEnfant.style.display='none';
     image.classList = 'image-form';
     image.alt = "image à modifier";
     image.src = contact.image;
-    //inputImage.appendChild(image)
 }
