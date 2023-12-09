@@ -1,6 +1,5 @@
-alert("donnée inserée!");
 let table = [];
-let imageEnCours;
+let imageEnCours="";
 function addContact(table) {
     let nomImage;
     const reader = new FileReader();
@@ -22,8 +21,6 @@ function addContact(table) {
         table.push(contact);
     }
 }
-alert("donnée inserée!");
-
 let inputImage = document.querySelector('.container-image-form');
 let divEnfant = document.querySelector('.form-input-image');
 let container = document.querySelector('.container-fields-form')
@@ -40,28 +37,37 @@ let btnReinit = document.querySelector('.container-button-reinit')
 let divinputPrenom = document.querySelector("#prenom")
 let divinputNom = document.querySelector("#nom")
 let divinputTelephone = document.querySelector("#telephone")
+let divinputEmail = document.querySelector('#email');
 let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
-let regexPrenom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏÊ- ]){3,50}$/;
-let regexNom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏ- ]){3,50}$/;
-alert("donnée inserée!");
-
-spanError = document.createElement('span');
+let regexPrenom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏÊ -]){3,50}$/;
+let regexNom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏ -]){3,50}$/;
+let regexTelephone = /^(081|082|084|089|090|091|093|097|099)([0-9]){7}$/;
 let prenomIsOk=false;
 let nomIsOk=false;
 let emailIsOk=false;
 let telephoneIsOk=false;
 inputEmail.addEventListener('blur', function () {
-    let divinputEmail = document.querySelector('#email');
     validateInput(divinputEmail,inputEmail,regexEmail,"votre adresse Mail n'est pas valide")
 })
 
 function validateInput(divInput,input,regex,errorMesage){
+    let spanAEffacer = divInput.querySelector('span');
     if (!regex.test(input.value)) {
-        errorOnValidate(divInput,errorMesage, input, spanError)
-        return false;
+        let spanError = document.createElement('span');
+        if(spanAEffacer){
+            clearErrorAfterValidation(divInput, input,spanAEffacer)
+            errorOnValidate(divInput,errorMesage, input, spanError)
+            return false;
+        }
+        else{
+            errorOnValidate(divInput,errorMesage, input, spanError)
+            return false;
+        }
     }
     else{
-        clearErrorAfterValidation(divInput, input,spanError)
+        if(spanAEffacer){
+            clearErrorAfterValidation(divInput, input,spanAEffacer)
+        }
         return true;
     }
 }
@@ -78,19 +84,16 @@ function clearErrorAfterValidation(divParent,input, span) {
 }
 
 inputPrenom.addEventListener('blur', function () {
-    prenomIsOk=validateInput(divinputPrenom,inputPrenom,regexPrenom,"Le prenom est invalide, de 3 à 50 caracteres requis")
+    validateInput(divinputPrenom,inputPrenom,regexNom,"Le prenom est invalide, de 3 à 50 caracteres requis")
 })
 
 //fonction nom
 inputNom.addEventListener('blur', function () {
-    nomIsOk=validateInput(divinputNom,inputNom,regexNom,"Le nom est invalide, de 3 à 50 caracteres requis")
+    validateInput(divinputNom,inputNom,regexNom,"Le nom est invalide, de 3 à 50 caracteres requis")
 })
 inputTelephone.addEventListener('blur', function () {
-    let regexTelephone = /^(081|082|084|089|090|091|093|097|099)([0-9]){7}$/;
-    telephoneIsOk=validateInput(divinputTelephone,inputTelephone,regexTelephone,"Le numero est invalide! exemple : 0971112233")
+    validateInput(divinputTelephone,inputTelephone,regexTelephone,"Le numero est invalide! exemple : 0971112233")
 })
-alert("donnée inserée!");
-
 inputImage.addEventListener('dragover', function (e) {
     e.stopPropagation();
     e.preventDefault();
@@ -146,11 +149,25 @@ function afficherImage(div, file) {
     image.id = "image_formulaire";
     image.alt = "La photo deposée est ici";
     div.appendChild(image);
+    readerFile(image,file)
+    // const reader = new FileReader();
+    // reader.onload = (e) => {
+    //     image.src = e.target.result;
+    // };
+    // if(reader.DONE){
+    //     imageEnCours = file;
+    // }
+    // reader.readAsDataURL(file);
+}
+
+function readerFile(image,file){
     const reader = new FileReader();
     reader.onload = (e) => {
         image.src = e.target.result;
     };
-    imageEnCours = file;
+    if(reader.DONE){
+        imageEnCours = file;
+    }
     reader.readAsDataURL(file);
 }
 function afficherImageContact(div, name) {
@@ -160,34 +177,41 @@ function afficherImageContact(div, name) {
     div.appendChild(image);
     image.src = name;
 }
-function verifierAvantDeCreer(prenomIsOk, nomIsOk, telephoneIsOk, emailIsOk, imageIsOk) {
-    alert(prenomIsOk)
-    // alert(nomIsOk)
-    // alert(telephoneIsOk)
-    // alert(emailIsOk)
-    // alert(imageIsOk)
-
-    if (prenomIsOk && nomIsOk && telephoneIsOk && emailIsOk && imageIsOk) {
+function verifierAvantDeCreer() {
+    prenomIsOk = validateInput(divinputPrenom,inputPrenom,regexNom,"Le prenom est invalide, de 3 à 50 caracteres requis")
+    nomIsOk=validateInput(divinputNom,inputNom,regexNom,"Le nom est invalide, de 3 à 50 caracteres requis")
+    emailIsOk=validateInput(divinputEmail,inputEmail,regexEmail,"votre adresse Mail n'est pas valide")
+    telephoneIsOk=validateInput(divinputTelephone,inputTelephone,regexTelephone,"Le numero est invalide! exemple : 0971112233")
+    let span = document.createElement('span');
+    if(verifyIfEmailExits(inputEmail.value,table)){
+        errorOnValidate(divinputEmail, "votre adresse Mail existe deja", inputEmail, span)
+        return false;
+    }
+    else if(verifyIfTelephoneExits(inputTelephone.value,table)){
+        errorOnValidate(divinputTelephone, "votre numéro existe deja", inputTelephone, span)
+        return false;
+    }
+    else if (prenomIsOk && nomIsOk && telephoneIsOk && emailIsOk && imageEnCours) {
         return true;
     }
     else {
         return false;
     }
 }
-function isinputEmailExits(inputEmail, contacts) {
+function verifyIfEmailExits(inputEmail, contacts) {
     if (contacts.length == 0) {
         return false;
     }
     else {
         for (const contact of contacts) {
-            if (contact.inputEmail == inputEmail) {
+            if (contact.email == inputEmail) {
                 return true;
             }
         }
     }
     return false;
 }
-function isTelephoneExits(telephone, contacts) {
+function verifyIfTelephoneExits(telephone, contacts) {
     if (contacts.length == 0) {
         return false;
     }
@@ -202,10 +226,6 @@ function isTelephoneExits(telephone, contacts) {
 }
 function viewsContact(table) {
     let longueur = table.length;
-    if (longueur == 0) {
-        alert('pas de donnée')
-        return false;
-    }
     let dernierContact = table[longueur - 1];
     let container_oneContact = document.createElement('div');
     container_oneContact.classList = "container-oneContact";
@@ -244,6 +264,11 @@ function viewsContact(table) {
             let data = modifierTableau(table, longueur - 1)
             identite_oneContact.innerHTML = data.prenom + " - " + data.nom + " - " + data.groupe
             numero_oneContact.innerHTML = data.telephone;
+            let image = container_image_contact.querySelector('img');
+            console.log(imageEnCours);
+            if(imageEnCours){
+                readerFile(image,imageEnCours)
+            }
             //afficherImageContact(container_image_contact,data.image)
             textareaBio_oneContact.innerHTML = data.bio;
             annuler(btnModif, btnAnnuler);
@@ -307,9 +332,6 @@ btnCreer.addEventListener('click', function () {
     addContact(table);
     viewsContact(table);
     reinitialiser();
-    }
-    else{
-    alert("La création a echoué! veillez remplir les champ et/ou la photo");
     }
 })
 btnReinit.addEventListener('click', reinitialiser)
