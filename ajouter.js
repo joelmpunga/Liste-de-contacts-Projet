@@ -82,13 +82,11 @@ function clearErrorAfterValidation(divParent, input, span) {
 function errorOnDropImage(inputImage, erreurImage, span, container, MesageErreur) {
     divEnfant.style.display = "block";
     let image = inputImage.querySelector('img');
-    if (image) {
+    if (image)
         image.parentNode.removeChild(image);
-    }
     let spanAEffacer = container.querySelector('span');
-    if (spanAEffacer) {
+    if (spanAEffacer)
         container.removeChild(spanAEffacer);
-    }
     inputImage.setAttribute('style', 'border-color:red;');
     span.innerHTML = MesageErreur;
     span.style.color = "red";
@@ -106,41 +104,33 @@ inputTelephone.addEventListener('blur', function () {
     validateInput(divinputTelephone, inputTelephone, regexTelephone, "Le numero est invalide! exemple : 0971112233")
 })
 inputImage.addEventListener('dragover', function (e) {
-    e.stopPropagation();
     e.preventDefault();
     inputImage.setAttribute('style', 'border-color:"";');
     e.dataTransfer.dropEffect = 'copy';
 })
 inputImage.addEventListener('drop', function (e) {
-    e.stopPropagation();
     e.preventDefault();
     const fileList = e.dataTransfer.files;
     let longeur = fileList.length;
     let file = fileList[longeur - 1];
     divEnfant.style.display = "block";
     let span = document.createElement('span');
-    if (erreurImage) {
+    if (erreurImage)
         container.lastChild.remove();
-    }
-    if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg") {
+    if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg")
         errorOnDropImage(inputImage, erreurImage, span, container_image, "Le format autorisé c'est png et jpg")
-    }
-    else if (file.size > 5000000) {
+    else if (file.size > 5000000)
         errorOnDropImage(inputImage, erreurImage, span, container_image, "La taille autorisé est d'au plus 5Mo")
-    }
     else {
         divEnfant.style.display = "none";
         let spanAEffacer = container_image.querySelector('span');
         let imageExistante = inputImage.querySelector('img');
-        if (imageExistante) {
+        if (imageExistante)
             imageExistante.parentNode.removeChild(imageExistante)
-        }
-        if (spanAEffacer) {
+        if (spanAEffacer)
             container_image.removeChild(spanAEffacer);
-        }
-        if (!erreurImage) {
+        if (!erreurImage)
             inputImage.lastChild.remove;
-        }
         afficherImage(inputImage, file);
         erreurImage = false;
     }
@@ -158,9 +148,8 @@ function readerFile(image, file) {
     reader.onload = (e) => {
         image.src = e.target.result;
     };
-    if (reader.DONE) {
+    if (reader.DONE)
         imageEnCours = file;
-    }
     reader.readAsDataURL(file);
 }
 function afficherImageContact(div, name) {
@@ -176,9 +165,8 @@ function verifierAvantDeCreer() {
     emailIsOk = validateInput(divinputEmail, inputEmail, regexEmail, "votre adresse Mail n'est pas valide")
     telephoneIsOk = validateInput(divinputTelephone, inputTelephone, regexTelephone, "Le numero est invalide! exemple : 0971112233")
     let span = document.createElement('span');
-    if (!imageEnCours) {
+    if (!imageEnCours)
         errorOnDropImage(inputImage, erreurImage, span, container_image, "Veuillez glisser une image")
-    }
     if (verifyIfEmailExits(inputEmail.value, table)) {
         errorOnValidate(divinputEmail, "votre adresse e-mail existe deja", inputEmail, span)
         return false;
@@ -187,17 +175,14 @@ function verifierAvantDeCreer() {
         errorOnValidate(divinputTelephone, "votre numéro existe deja", inputTelephone, span)
         return false;
     }
-    else if (prenomIsOk && nomIsOk && telephoneIsOk && emailIsOk && imageEnCours) {
+    else if (prenomIsOk && nomIsOk && telephoneIsOk && emailIsOk && imageEnCours)
         return true;
-    }
-    else {
+    else
         return false;
-    }
 }
 function verifyIfEmailExits(inputEmail, contacts) {
-    if (contacts.length == 0) {
+    if (contacts.length == 0)
         return false;
-    }
     else {
         for (const contact of contacts)
             if (contact.email == inputEmail)
@@ -206,9 +191,8 @@ function verifyIfEmailExits(inputEmail, contacts) {
     return false;
 }
 function verifyIfTelephoneExits(telephone, contacts) {
-    if (contacts.length == 0) {
+    if (contacts.length == 0)
         return false;
-    }
     else {
         for (const contact of contacts)
             if (contact.telephone == telephone)
@@ -232,8 +216,7 @@ function viewsContact(table) {
     identite_oneContact.innerHTML = dernierContact.prenom + " - " + dernierContact.nom + " - " + dernierContact.groupe
     let container_icones_oneContact = document.createElement('div');
     container_icones_oneContact.classList = "container-icones-oneContact";
-    let aModif = document.createElement('a');
-    aModif.href = "#"
+    let aModif = document.createElement('i');
     let linkModifClicked = false;
     aModif.addEventListener('click', function (e) {
         e.preventDefault();
@@ -257,9 +240,8 @@ function viewsContact(table) {
             identite_oneContact.innerHTML = data.prenom + " - " + data.nom + " - " + data.groupe
             numero_oneContact.innerHTML = data.telephone;
             let image = container_image_contact.querySelector('img');
-            if (imageEnCours) {
+            if (imageEnCours)
                 readerFile(image, imageEnCours)
-            }
             textareaBio_oneContact.innerHTML = data.bio;
             annuler(btnModif, btnAnnuler);
             btnCreer.setAttribute('style', 'display:block;');
@@ -279,21 +261,16 @@ function viewsContact(table) {
         divEnfant.style.display = 'block';
         reinitialiser();
     }
-    let faModif = document.createElement('i');
-    faModif.classList = "fa fa-user-pen icone-modification"
-    let aSuppr = document.createElement('a');
-    aSuppr.href = ""
+    aModif.classList = "fa fa-user-pen icone-modification"
+    let aSuppr = document.createElement('i');
     aSuppr.addEventListener('click', function (e) {
         e.preventDefault();
         let isApproved = confirm("Etes vou sûrs de vouloir Supprimer? La suppression est irreversible!")
-        if (isApproved) {
-            if (supprimer(table, longueur - 1)) {
+        if (isApproved)
+            if (supprimer(table, longueur - 1))
                 container_oneContact.parentNode.removeChild(container_oneContact);
-            }
-        }
     })
-    let faSuppr = document.createElement('i');
-    faSuppr.classList = "fa fa-trash-o icone-suppression"
+    aSuppr.classList = "fa fa-trash-o icone-suppression"
     let numero_oneContact = document.createElement('div');
     numero_oneContact.classList = "numero-oneContact"
     let textareaBio_oneContact = document.createElement('div');
@@ -307,16 +284,14 @@ function viewsContact(table) {
     container_entete.appendChild(identite_oneContact);
     container_entete.appendChild(container_icones_oneContact);
     container_icones_oneContact.appendChild(aModif)
-    aModif.appendChild(faModif)
     container_icones_oneContact.appendChild(aSuppr)
-    aSuppr.appendChild(faSuppr)
     container_detail_contact.appendChild(numero_oneContact);
     numero_oneContact.innerHTML = dernierContact.telephone;
     container_detail_contact.appendChild(textareaBio_oneContact);
     textareaBio_oneContact.innerHTML = dernierContact.bio;
 }
 btnCreer.addEventListener('click', function () {
-    let checkInputs = verifierAvantDeCreer(prenomIsOk, nomIsOk, telephoneIsOk, emailIsOk, imageEnCours);
+    let checkInputs = verifierAvantDeCreer();
     if (checkInputs) {
         addContact(table);
         viewsContact(table);
@@ -334,9 +309,8 @@ function reinitialiser() {
     textareaBio.value = "";
     divEnfant.style.display = "block";
     let image = document.querySelector('#image_formulaire');
-    if (image) {
+    if (image)
         image.parentNode.removeChild(image);
-    }
     imageEnCours = "";
     prenomIsOk = false;
     nomIsOk = false;
