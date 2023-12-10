@@ -1,5 +1,11 @@
 :root{
     --couleur-blanch:#fff;
+    --police-poppins:'Poppins';
+    --bordure-encadre:1px solid #C4C4C4;
+    --couleur-bleu-background:#0880D6;
+    --couleur-grise-secondaire:#555555;
+
+
 }
 .container-form-contact{
     display: flex;
@@ -10,7 +16,7 @@
     gap: 1rem;
     width: 100%;
     margin: auto;
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 .container-form{
@@ -18,8 +24,7 @@
     flex-direction: column;
     width: 45%;
     height:auto;
-    border: 1px solid #C4C4C4;
-    scroll-behavior: smooth;
+    border: var(--bordure-encadre);
 }
 
 .container-title-form{
@@ -29,13 +34,13 @@
     padding: 12px 0px;
     width: 100%;
     height: 54px;
-    background: #0880D6;
+    background: var(--couleur-bleu-background);
 }
 
 .title-form{
     width: 60%;
     height: 3.5rem;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -94,37 +99,37 @@
 
 .label-field{
     width: 100%;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     text-align:left;
-    color: #0880D6;
+    color: var(--couleur-bleu-background);
 }
 
 .input-form{
     width: 100%;
     height: 45px;
     background: var(--couleur-blanch);
-    border: 1px solid #C4C4C4;
+    border: var(--bordure-encadre);
 }
 
 .label-field-textarea{
     width: 100%;
     height: 24px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     text-align:left;
-    color: #0880D6;
+    color: var(--couleur-bleu-background);
 }
 
 .input-form-textarea{
     width: 100%;
     height: 7rem;
     background: var(--couleur-blanch);
-    border: 1px solid #C4C4C4;
+    border: var(--bordure-encadre);
 }
 
 
@@ -157,16 +162,16 @@
 .image-message{
     width: 9rem;
     height: auto;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     text-align: center;
-    color: #555555;
+    color: var(--couleur-grise-secondaire);
     margin-top: 60px;
 }
 
-.container-button-creer{
+.container-button-creer, .container-button-modifier{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -174,13 +179,13 @@
     gap: 10px;
     width: 8rem;
     height: 44px;
-    background: #0880D6;
+    background: var(--couleur-bleu-background);
     border-style: none;
     color: var(--couleur-blanch);
 
 }
 
-.container-button-reinit{
+.container-button-reinit, .container-button-annuler{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -196,7 +201,7 @@
 .button-creer{
     width: 45px;
     height: 24px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -208,7 +213,7 @@
 .button-reinit{
     width: 41px;
     height: 24px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -233,13 +238,13 @@
     align-items: flex-start;
     width: 100%;
     height: 77px;
-    background: #0880D6;
+    background: var(--couleur-bleu-background);
 }
 
 .title-contact{
     width: 48rem;
-    height: 30px;
-    font-family: 'Poppins';
+    height: 3.5rem;
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -252,7 +257,7 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    width: 400px;
+    width: 97%;
     height: auto;
 }
 
@@ -265,7 +270,7 @@
     padding: 20px;
     width:100%;
     height: auto;
-    border-bottom: 1px solid #C4C4C4;
+    border-bottom: var(--bordure-encadre);
 }
 
 .image-form{
@@ -294,8 +299,7 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-   
-    width: 90%;
+    width: 96%;
     height: 30px;
 }
 
@@ -303,11 +307,11 @@
 .identite-oneContact{
     width: 560px;
     height: 24px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    color: #555555;
+    color: var(--couleur-grise-secondaire);
 }
 
 .container-icones-oneContact{
@@ -324,7 +328,7 @@
 .icone-modification{
     width: 16.86px;
     height: 14px;
-    color: #555555;
+    color: var(--couleur-grise-secondaire);
 }
 
 .icone-suppression{
@@ -336,21 +340,21 @@
 .numero-oneContact{
     width: 74px;
     height: 21px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    color: #555555;
+    color: var(--couleur-grise-secondaire);
 }
 
 .bio-oneContact{
     width: 511px;
     height: 54px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    color: #555555;
+    color: var(--couleur-grise-secondaire);
 }
 
 .main-container{
@@ -363,13 +367,13 @@
     height: 70px;
     left: 0px;
     top: 0px;
-    background: #0880D6;
+    background: var(--couleur-bleu-background);
 }
 
 .main-container-title{
     width: 100%;
     height: 30px;
-    font-family: 'Poppins';
+    font-family: var(--police-poppins);
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -391,7 +395,7 @@
         flex-direction: column;
         width: 100%;
         height:auto;
-        border: 1px solid #C4C4C4;
+        border: var(--bordure-encadre);
         margin-top: 40px;
     }
 
@@ -423,7 +427,7 @@
         flex-direction: row;
         align-items: center;
         padding: 0px;
-        width: 50%;
+        width: 97%;
         height: auto;
     }
     .container-cont{
@@ -445,7 +449,7 @@
         padding: 20px;
         width:100%;
         height: auto;
-        border-bottom: 1px solid #C4C4C4;
+        border-bottom: var(--bordure-encadre);
     }
     .container-detail-contact{
         display: flex;

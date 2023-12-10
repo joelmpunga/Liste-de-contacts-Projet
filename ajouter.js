@@ -211,7 +211,7 @@ function viewsContact(table) {
     container_detail_contact.classList = "container-detail-contact";
     let container_entete = document.createElement('div');
     container_entete.classList = "container-entete";
-    let identite_oneContact = document.createElement('h4');
+    let identite_oneContact = document.createElement('h5');
     identite_oneContact.classList = "identite-oneContact";
     identite_oneContact.innerHTML = dernierContact.prenom + " - " + dernierContact.nom + " - " + dernierContact.groupe
     let container_icones_oneContact = document.createElement('div');
@@ -223,28 +223,28 @@ function viewsContact(table) {
         let btnModif = document.createElement('button');
         btnModif.innerText = "Modifier";
         let divBtn = document.querySelector('.container-button-form');
-        btnCreer.setAttribute('style', 'display:none;');
-        btnReinit.setAttribute('style', 'display:none;');
-        btnModif.classList = "container-button-creer";
+        btnCreer.style.display="none";
+        btnReinit.style.display="none";
+        btnModif.classList = "container-button-modifier";
         let btnAnnuler = document.createElement('button');
         btnAnnuler.innerText = "Annuler";
-        let btnModifAEffacer = divBtn.querySelector('.container-button-creer')
+        let btnModifAEffacer = divBtn.querySelector('.container-button-modifier')
         if (!btnModifAEffacer) {
             if (!linkModifClicked) {
-                divBtn.prepend(btnModif)
+                divBtn.appendChild(btnModif)
                 divBtn.appendChild(btnAnnuler)
             }
         }
         else {
             if (!linkModifClicked) {
-                let btnAnnulerAEffacer = divBtn.querySelector('.container-button-reinit')
+                let btnAnnulerAEffacer = divBtn.querySelector('.container-button-annuler')
                 btnModifAEffacer.parentNode.removeChild(btnModifAEffacer);
                 btnAnnulerAEffacer.parentNode.removeChild(btnAnnulerAEffacer);
-                divBtn.prepend(btnModif)
+                divBtn.appendChild(btnModif)
                 divBtn.appendChild(btnAnnuler)
             }
         }
-        btnAnnuler.classList = "container-button-reinit";
+        btnAnnuler.classList = "container-button-annuler";
         afficherAvantModif(table, longueur - 1)
         linkModifClicked = true;
         btnModif.addEventListener('click', function () {
@@ -266,8 +266,8 @@ function viewsContact(table) {
     })
     function annuler(btnModif, btnAnnuler) {
         linkModifClicked = false;
-        btnCreer.setAttribute('style', 'display:block;');
-        btnReinit.setAttribute('style', 'display:block;');
+        btnCreer.style.display = 'block';
+        btnReinit.style.display = 'block';
         btnModif.style.display = 'none';
         btnAnnuler.style.display = 'none';
         divEnfant.style.display = 'block';
