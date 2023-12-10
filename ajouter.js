@@ -228,9 +228,21 @@ function viewsContact(table) {
         btnModif.classList = "container-button-creer";
         let btnAnnuler = document.createElement('button');
         btnAnnuler.innerText = "Annuler";
-        if (!linkModifClicked) {
-            divBtn.prepend(btnModif)
-            divBtn.appendChild(btnAnnuler)
+        let btnModifAEffacer = divBtn.querySelector('.container-button-creer')
+        if (!btnModifAEffacer) {
+            if (!linkModifClicked) {
+                divBtn.prepend(btnModif)
+                divBtn.appendChild(btnAnnuler)
+            }
+        }
+        else {
+            if (!linkModifClicked) {
+                let btnAnnulerAEffacer = divBtn.querySelector('.container-button-reinit')
+                btnModifAEffacer.parentNode.removeChild(btnModifAEffacer);
+                btnAnnulerAEffacer.parentNode.removeChild(btnAnnulerAEffacer);
+                divBtn.prepend(btnModif)
+                divBtn.appendChild(btnAnnuler)
+            }
         }
         btnAnnuler.classList = "container-button-reinit";
         afficherAvantModif(table, longueur - 1)
