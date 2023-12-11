@@ -111,7 +111,6 @@ inputImage.addEventListener('dragover', function (e) {
 })
 
 inputfile.addEventListener('change', function (e) {
-    e.preventDefault();
     let file = inputfile.files[0];
     alert(file);
     divEnfant.style.display = "block";
