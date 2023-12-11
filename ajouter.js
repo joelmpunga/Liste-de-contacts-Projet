@@ -111,36 +111,18 @@ inputImage.addEventListener('dragover', function (e) {
 })
 
 inputfile.addEventListener('change', function (e) {
-    let file = inputfile.files[0];
-    alert(file);
-    let divEnfant = document.querySelector('.form-input-image-phone')
-    divEnfant.style.display = "block";
-    let span = document.createElement('span');
-    if (erreurImage)
-        container.lastChild.remove();
-    if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg")
-        errorOnDropImage(inputfile, erreurImage, span, container_image, "Le format autorisé c'est png et jpg")
-    else if (file.size > 5000000)
-        errorOnDropImage(inputfile, erreurImage, span, container_image, "La taille autorisé est d'au plus 5Mo")
-    else {
-        divEnfant.style.display = "none";
-        let spanAEffacer = container_image.querySelector('span');
-        let imageExistante = inputfile.querySelector('img');
-        if (imageExistante)
-            imageExistante.parentNode.removeChild(imageExistante)
-        if (spanAEffacer)
-            container_image.removeChild(spanAEffacer);
-        if (!erreurImage)
-        inputfile.lastChild.remove;
-        afficherImage(inputfile, file);
-        erreurImage = false;
-    }
+    e.preventDefault();
+    const file = inputfile.files[0];
+    validateImage(file)
 })
 inputImage.addEventListener('drop', function (e) {
     e.preventDefault();
     const fileList = e.dataTransfer.files;
     let longeur = fileList.length;
     let file = fileList[longeur - 1];
+    validateImage(file)
+})
+function validateImage(file){
     divEnfant.style.display = "block";
     let span = document.createElement('span');
     if (erreurImage)
@@ -162,7 +144,7 @@ inputImage.addEventListener('drop', function (e) {
         afficherImage(inputImage, file);
         erreurImage = false;
     }
-})
+}
 function afficherImage(div, file) {
     let image = document.createElement('img');
     image.classList = 'image-form';
