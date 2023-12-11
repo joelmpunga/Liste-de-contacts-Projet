@@ -39,8 +39,8 @@ let divinputTelephone = document.querySelector("#telephone")
 let divinputEmail = document.querySelector('#email');
 let container_image = document.querySelector('#image');
 let regexEmail = /^\w+(\.\w+)?@\w+\.[a-z]{2,}\b/i;
-let regexNom = /^([a-zéèçàùïêA-ZÉÈÇÀÙÏ -]){3,50}$/;
-let regexTelephone = /^(081|082|084|089|090|091|093|097|099)([0-9]){7}$/;
+let regexNom = /^([a-zéèçàùïêëîA-ZÉÈÇÀÙÏÊËÎ -]){3,50}$/;
+let regexTelephone = /^(080|081|082|084|085|089|090|091|097|098|099)([0-9]){7}$/;
 let prenomIsOk = false;
 let nomIsOk = false;
 let emailIsOk = false;
@@ -50,7 +50,7 @@ inputEmail.addEventListener('blur', function () {
 })
 function validateInput(divInput, input, regex, errorMesage) {
     let spanAEffacer = divInput.querySelector('span');
-    if (!regex.test(input.value)) {
+    if (!regex.test(input.value.trim())) {
         let spanError = document.createElement('span');
         if (spanAEffacer) {
             clearErrorAfterValidation(divInput, input, spanAEffacer)
