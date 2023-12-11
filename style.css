@@ -4,9 +4,8 @@
     --bordure-encadre:1px solid #C4C4C4;
     --couleur-bleu-background:#0880D6;
     --couleur-grise-secondaire:#555555;
-
-
 }
+
 .container-form-contact{
     display: flex;
     flex-direction: row;
