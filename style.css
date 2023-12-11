@@ -25,12 +25,12 @@
     height:auto;
     border: var(--bordure-encadre);
 }
-#imageOnPhone{
+/* #imageOnPhone{
     display: none;
 }
 #image{
     display: block;
-}
+} */
 .container-title-form{
     display: flex;
     flex-direction: row;
@@ -473,11 +473,11 @@
         height: auto;
     }
 
-    #imageOnPhone{
+    /* #imageOnPhone{
         display: block;
     }
     #image{
         display: none;
-    }
+    } */
     
    }
