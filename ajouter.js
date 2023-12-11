@@ -112,9 +112,7 @@ inputImage.addEventListener('dragover', function (e) {
 
 inputfile.addEventListener('change', function (e) {
     e.preventDefault();
-    const fileList = inputfile.files[0];
-    let longeur = fileList.length;
-    let file = fileList[longeur - 1];
+    let file = inputfile.files[0];
     divEnfant.style.display = "block";
     let span = document.createElement('span');
     if (erreurImage)
