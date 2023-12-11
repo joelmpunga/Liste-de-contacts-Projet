@@ -113,6 +113,9 @@ inputImage.addEventListener('dragover', function (e) {
 inputfile.addEventListener('change', function (e) {
     e.preventDefault();
     const file = inputfile.files[0];
+    if(file){
+        inputImage.setAttribute('style', 'border-color:"";');
+    }
     validateImage(file)
 })
 inputImage.addEventListener('drop', function (e) {
