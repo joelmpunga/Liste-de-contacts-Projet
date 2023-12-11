@@ -113,6 +113,7 @@ inputImage.addEventListener('dragover', function (e) {
 inputfile.addEventListener('change', function (e) {
     let file = inputfile.files[0];
     alert(file);
+    let divEnfant = document.querySelector('.form-input-image-phone')
     divEnfant.style.display = "block";
     let span = document.createElement('span');
     if (erreurImage)
