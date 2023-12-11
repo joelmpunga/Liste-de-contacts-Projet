@@ -113,25 +113,26 @@ inputImage.addEventListener('dragover', function (e) {
 inputfile.addEventListener('change', function (e) {
     e.preventDefault();
     let file = inputfile.files[0];
+    alert(file);
     divEnfant.style.display = "block";
     let span = document.createElement('span');
     if (erreurImage)
         container.lastChild.remove();
     if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg")
-        errorOnDropImage(inputImage, erreurImage, span, container_image, "Le format autorisé c'est png et jpg")
+        errorOnDropImage(inputfile, erreurImage, span, container_image, "Le format autorisé c'est png et jpg")
     else if (file.size > 5000000)
-        errorOnDropImage(inputImage, erreurImage, span, container_image, "La taille autorisé est d'au plus 5Mo")
+        errorOnDropImage(inputfile, erreurImage, span, container_image, "La taille autorisé est d'au plus 5Mo")
     else {
         divEnfant.style.display = "none";
         let spanAEffacer = container_image.querySelector('span');
-        let imageExistante = inputImage.querySelector('img');
+        let imageExistante = inputfile.querySelector('img');
         if (imageExistante)
             imageExistante.parentNode.removeChild(imageExistante)
         if (spanAEffacer)
             container_image.removeChild(spanAEffacer);
         if (!erreurImage)
-            inputImage.lastChild.remove;
-        afficherImage(inputImage, file);
+        inputfile.lastChild.remove;
+        afficherImage(inputfile, file);
         erreurImage = false;
     }
 })
