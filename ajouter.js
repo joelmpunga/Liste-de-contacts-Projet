@@ -109,7 +109,7 @@ inputImage.addEventListener('dragover', function (e) {
     inputImage.setAttribute('style', 'border-color:"";');
     e.dataTransfer.dropEffect = 'copy';
 })
-
+inputfile.style.display='none';
 inputfile.addEventListener('change', function (e) {
     e.preventDefault();
     const file = inputfile.files[0];
